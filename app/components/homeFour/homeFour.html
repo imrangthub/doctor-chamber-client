@@ -1,0 +1,2099 @@
+<style>
+div#cke_1_contents {
+	height: 300px !important;
+}
+div#cke_editor {
+	height: 380px !important;
+}
+div#cke_709_contents {
+	height: 200px !important;   
+}
+.cke_contents {
+	height: 300px !important;
+}
+.cke_inner {
+	height: 312px !important;
+}
+.accordion_custom {
+	margin-bottom: 10px;
+}
+.home-tow-component {
+	position: relative;
+	z-index: 10000;}
+.dropDown_medication2 .printerInner {
+    right: -28px !important;
+}
+</style>
+<div ng-include="'./app/components/homeFour/modal/allModal.html'"></div>
+<div ng-include="'./app/components/homeFour/modal/investigation.html'"></div>
+<div ng-include="'./app/components/homeFour/modal/clinicalHistory.html'"></div>
+<div ng-include="'./app/components/homeFour/modal/medicationModal.html'"></div>
+<div ng-include="'./app/components/homeFour/modal/pExamination.html'"></div>
+<!-- start printOption -->
+<div class="printOption" ng-keypress="catchKeyPress($event)">
+  <div class="container-fluid">
+    <div class="top_section_all paddBtm">
+      <div class="row padding_none borderBottomHome">
+        <div class="col-md-6 col-sm-12 color_grid_one">
+          <div class="patient_all_info_hom2">
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th style="width:66px;">Patient ID:</th>
+                    <td style="width:170px;">{{patient.hospitalNo}}</td>
+                    <th style="width:96px;">Patient Name:</th>
+                    <td style="width:330px;">{{patient.patientName}}</td>
+                    <th style="width:36px;">Age:</th>
+                    <td>{{patient.age}}</td>
+                    <th style="width:46px;">Gender:</th>
+                    <td>{{patient.gender}}</td>
+                  </tr>
+                  <tr>
+                    <th style="width:66px;">Mobile No:</th>
+                    <td style="width:170px;">{{patient.phoneNo}}</td>
+                    <th style="width:96px;">Cons. ID:</th>
+                    <td style="width:330px;">{{patient.consultationId}}</td>
+                    <th style="width:96px;">Marital Status:</th>
+                    <td colspan="3">{{patient.maritalStatus}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table_content table_all_padding">
+          <div class="vitalAreaTop">
+            <!-- <h5 class="vitalTitle">Vitals:</h5> -->
+            <p class="vitalsTitleTop" ng-repeat="vital in vitalData | orderBy: 'vitalSerial'"> 
+            <span>{{vital.vitalName}}</span>
+              <input ng-model="vital.vitalResult" class="form-control" type="text" placeholder="{{vital.vitalUnit}}">
+            </p>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-12 color_grid_one"> 
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tab_custom">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href=".consultaionH">OPD Consultation History</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href=".admissionH">Admission History</a> </li>
+          </ul>
+          
+          <!-- Tab panes -->
+          <div class="tab-content tab_custom_area tab_custom_area1"> 
+            
+            <!-- start_consultaionH -->
+            <div  class="tab-pane tab-pane2 active consultaionH">
+              <cons-his-com></cons-his-com>
+            </div>
+            <!-- end_consultaionH --> 
+            
+            <!-- start_admissionH -->
+            <div class="tab-pane tab-pane2 fade admissionH">
+              <addmission-his-com></addmission-his-com>
+            </div>
+            <!-- end_admissionH --> 
+            
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-12 color_grid_three">
+          <div class="btn_all_topprint">
+            <div class="print_top2 text-center">
+              <button type="button" class="btn btn-success print_btn2" ng-click="onSave()"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+              <button ng-click="onPrint($event);" type="button" class="btn btn-primary print_btn2 clicktoggle show1"> <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+              <button onclick="onPrint($event)" type="button" class="btn btn-primary print_btn2 clicktoggle show2"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+              <a href="#/worklist" title="Work list">
+              <button type="button" class="btn btn-warning workListBtn"> <i class="fa fa-th-list" aria-hidden="true"></i> </button>
+              </a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_table_content width99" id="homeTwoMainTableContent">
+        
+        <!-- start history Modal -->
+        <div class="modal fade" id="historyModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content"> 
+              
+              <!-- Modal Header -->
+              <div class="modal-header modal_header_custom">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="col-md-12 col-sm-12"> 
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs tab_custom">
+                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href=".consultaionH">OPD Consultation History</a> </li>
+                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href=".admissionH">Admission History</a> </li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content tab_custom_area tab_custom_area1"> 
+                    <!-- start_consultaionH -->
+                    <div class="container-fluid tab-pane consultaionH active">
+                      <div class="table-responsive">
+                        <div class="scrool_ber height_table_240">
+                          <table class="table table-bordered table-sm">
+                            <thead>
+                              <tr>
+                                <th>Date</th>
+                                <th>Doctor Name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal2">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal3">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal4">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal5">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <button type="button" class="btn btn-primary">Global Notes</button>
+                      <button type="button" class="btn btn-info">OPD Consultaion</button>
+                    </div>
+                    <!-- end_consultaionH --> 
+                    <!-- start_admissionH -->
+                    <div  class="container-fluid tab-pane fade admissionH">
+                      <div class="scrool_ber height_table_240">
+                        <div class="table-responsive">
+                          <table class="table table-bordered table-sm">
+                            <thead>
+                              <tr>
+                                <th>Date</th>
+                                <th>Doctor Name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal2">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal3">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal4">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal5">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal6">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                              <tr class="openModal">
+                                <td>12-12-2017</td>
+                                <td>Dr. Pratik Dewan (Endocrinology &amp; Internal Medical)</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <button type="button" class="btn btn-primary">Global Notes</button>
+                      <button type="button" class="btn btn-info">OPD Consultaion</button>
+                    </div>
+                    <!-- end_admissionH --> 
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end history Modal --> 
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tab_custom tab_custom2">
+          <!--  <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#patientList">Patient's List</a> </li> -->
+          <li ng-click="catchKeyPress($event)" tabindex="0" class="nav-item"> <a class="nav-link active" data-toggle="tab" href=".clinicalHis" >Clinical History</a> </li>
+          <li tabindex="3" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".ChiefComplain">Chief Complain</a> </li>
+          <li tabindex="5" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".PhysicalExamination">Physical Examination</a> </li>
+          <li ng-click="catchKeyPress($event)" tabindex="1" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Investigation">Investigation</a> </li>
+          <li tabindex="4" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Medication">Medication</a> </li>
+          <li tabindex="6" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Diagnosis">Diagnosis</a> </li>
+          <li tabindex="7" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Advice">Advice</a> </li>
+          <li tabindex="8" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Finalization">Finalization</a> </li>
+          <li tabindex="9" class="nav-item"> <a class="nav-link" data-toggle="tab" href=".Finalization2">Finalization2</a> </li>
+        </ul>
+        
+        <!-- Tab panes -->
+        <div class="tab-content tab_custom_area"> 
+          <!--start clinicalHis-->
+          <div class="tab-pane  clinicalHis active">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <textarea  name="editor" ck-editor ng-model="note.prescritionData" ></textarea>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <textarea   class="form-control textHeight2"></textarea>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <div class="accordion accordion_custom scrool_ber height_table_384"  id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Template List </button>
+                      </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="table_according">
+                          <table class="table table-bordered table-striped table-sm">
+                            <thead>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="obj in clinicalHistoryList">
+                                <td style="width:30px;"><button ng-click="copyClinicalHistoryToEditor(obj)" class="btn btn-primary"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button></td>
+                                <td>{{obj.noteName}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end clinicalHis--> 
+          
+          <!-- start_Investigation -->
+          <div class="tab-pane Investigation fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-3 padding_left">
+                  <div class="pannel_left pannel_left2">
+                    <h6 class="h6fevList">Favorite Investigation List</h6>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_380">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in favInvestigatList">
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><input type="checkbox" name=""></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9  padding_right2">
+                  <div class="investigation_table">
+                    <div class="invesListTop home-tow-component">
+                      <investigation-search-component 
+                          place="Type investigation..." 
+                          data="investigatData" 
+                          bind-type = "itemTypeNo"
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "referenceId"
+                          display-property="itemName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="investigatList"> </investigation-search-component>
+                    </div>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320  padding_all_diagonosis marginTopNone">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Name</th>
+                              <th style="width:60px;"></th>
+                            </tr>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in investigatList" ng-if="!obj.isDeleted">
+                              <td style="width: 10px;"><button ng-click="onMakeFavorit(obj,'favInvestigatList')" class="btn btn-primary"> <i class="fa fa-angle-double-left" aria-hidden="true"></i> </button></td>
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><span ng-click="onDelete($index,'investigatList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_Investigation --> 
+          <!--start_Medication-->
+          <div  class="tab-pane fade Medication">
+            <div class="clearfix"></div>
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 padding_left borderpannel">
+                  <div class="pannel_left pannel_left2 borderNoneRight min_height">
+                    <h6 class="h6fevList">Favorite Medicine List</h6>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in favMedicineList">
+                              <td><strong>{{obj.form}} {{obj.brandName}} {{obj.strength}}</strong></td>
+                              <td class="text-center"><input type="checkbox" name=""></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9 col-sm-12  padding_right3">
+                  <div class="investigation_table">
+<!--                     <div>
+                      <medicine-component 
+                        place="Type brand name..."
+                        data="medicineData"
+                        consider-generic="true"
+                        bind-type = 4
+                        bind-type-property= "prescritionDataType"                    
+                        item-no-property = ""
+                        bind-item-no-property = "itemNo"
+                        display-property="'brandName'"
+                        on-select="onSelect(obj, listName)"> </medicine-component>
+                    </div>
+ -->                    
+                    <div>
+                      <opd-medicine-component 
+                        place="Type opd brand name..."
+                        data="medicineData"
+                        consider-generic="true"
+                        bind-type = 4
+                        bind-type-property= "prescritionDataType"                    
+                        item-no-property = ""
+                        bind-item-no-property = "itemNo"
+                        display-property="'brandName'"
+                        on-select="onSelect(obj, listName)"> </opd-medicine-component>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="scrool_ber height_table_285">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th style="width:38px;"></th>
+                              <th style="width:38px;"></th>
+                              <th style="width:130px;">Form</th>
+                              <th>Brand Name</th>
+                              <th style="width:150px;">Strength</th>
+                              <th style="width:180px;">Dose</th>
+                              <th style="width:250px;">Relation With Meal</th>
+                              <th style="width:150px;">Duration</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="medicine in medicineList" ng-if="!medicine.isDeleted">
+                              <td style="width: 10px;"><button ng-click="onMakeFavorit(medicine,'favMedicineList')" class="btn btn-primary"> <i class="fa fa-angle-double-left" aria-hidden="true"></i> </button></td>
+                              <td><button class="btnRemove" ng-click="onDelete($index,'medicineList')"> <i class="fa fa-minus-square-o" aria-hidden="true"></i> </button></td>
+                              <td><input class="form-control borderNone" type="text" ng-model="medicine.form"></td>
+                              <td><input class="form-control borderNone" type="text" ng-model="medicine.brandName"></td>
+                              <td><input class="form-control borderNone" type="text" ng-model="medicine.strength"></td>
+                              <td><input class="form-control borderNone" value="1+1+1" ng-model="medicine.dosage"></td>
+                              <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.relationWithMeal"></td>
+                              <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.duration"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        
+                        <!--search_item_slider-->
+                        <div class="drop_value_slide drop_value_slide2"> <span class="span_close"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                          <table class="tableTopDrug">
+                            <tr>
+                              <th>Group:</th>
+                              <td style="width: 400px;"><select class="form-control" id="exampleFormControlSelect1">
+                                  <option>Analgesic/antipyretic</option>
+                                </select></td>
+                              <th>Generic:</th>
+                              <td style="width: 310px;"><select class="form-control" id="exampleFormControlSelect1">
+                                  <option>Paracetamol</option>
+                                </select></td>
+                              <td class="icon_td"><button class="hoverTitle btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i><span>Show Info</span></button></td>
+                              <td class="icon_td"><button class="hoverTitle btn btn-info"><i class="fa fa-step-backward" aria-hidden="true"></i><span>Find Previous</span></button></td>
+                              <td class="icon_td"><button class="hoverTitle btn btn-info"><i class="fa fa-step-forward" aria-hidden="true"></i><span>Find Next</span></button></td>
+                              <td class="icon_td"><button class="hoverTitle btn btn-primary"><i class="fa fa-check-square" aria-hidden="true"></i><span>Accept</span></button></td>
+                            </tr>
+                          </table>
+                          <div class="drop_value_slide_iiner scrool_ber height_table_320">
+                            <div class="drugTable">
+                              <div class="row">
+                                <div class="col-md-8 col-sm-12 tableDrugcol">
+                                  <div class="scrool_ber height_table_320">
+                                    <table class="table table-bordered  table-sm">
+                                      <thead>
+                                        <tr>
+                                          <th style="width:24px;"></th>
+                                          <th>Brand</th>
+                                          <th>Manufacturer</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                        <tr>
+                                          <td><input type="checkbox" name=""></td>
+                                          <td>Napa</td>
+                                          <td>Beximco Pharma</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 tableDrugcol">
+                                  <div class="scrool_ber height_table_320">
+                                    <table class="table table-bordered  table-sm">
+                                      <thead>
+                                        <tr>
+                                          <th>Formulation</th>
+                                          <th>Strength</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Tab</td>
+                                          <td>500 mg</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <!--end_search_item_slider--> 
+                      </div>
+                      
+                      
+                      
+                      
+                    </div>
+                        <div class="row">
+                <div class="col-md-12 ">
+                  <div class="instruction_pannel row">
+                    <div class="form-group row col-md-8">
+                      <label for="inputPassword" class="col-sm-2 col-form-label text-right instructionLabel"><strong>Instruction:</strong></label>
+                      <div class="col-md-10 col-sm-12">
+                        <textarea type="password"  placeholder=""></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-4 text-left">
+                      <button ng-click="Medication()" type="button" class="btn btn-info">...</button>
+                      <div class="clearfix"></div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+                        <label class="custom-control-label" for="customControlValidation1"><span class="check_text">Fetch Prev</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+          <!--end_Medication--> 
+          
+          <!-- start_ChiefComplain -->
+          <div class="tab-pane ChiefComplain fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-3 padding_left">
+                  <div class="pannel_left pannel_left2">
+                    <h6 class="h6fevList">Favorite Chief Complain List</h6>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_380">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in favChiefComplainList">
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><input type="checkbox" name=""></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9  padding_right2">
+                  <div class="investigation_table">
+                    <div class="invesListTop home-tow-component">
+                      <search-component 
+                          place="Type Chief Complain..." 
+                          data="chiefComplainData" 
+                          bind-type = 7
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "referenceId"
+                          display-property="chiefComName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="chiefComplainList"> </search-component>
+                    </div>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320 padding_all_diagonosis marginTopNone">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Chief Compain Name</th>
+                              <th style="width:60px;"></th>
+                            </tr>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in chiefComplainList" ng-if="!obj.isDeleted">
+                              <td style="width: 10px;"><button ng-click="onMakeFavorit(obj,'favChiefComplainList')" class="btn btn-primary"> <i class="fa fa-angle-double-left" aria-hidden="true"></i> </button></td>
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><span ng-click="onDelete($index,'chiefComplainList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_ChiefComplain --> 
+          
+          <!-- start_PhysicalExamination -->
+          <div class="tab-pane PhysicalExamination fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-4 col-sm-12 color_grid_onephy ">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"> <strong>General Exam</strong> </label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <div class="tableArea tableAreaPhy ">
+                        <div class="table-responsive">
+                          <table class="table table-borderless">
+                            <tr ng-repeat="obj in generalExamData | orderBy: 'examSerial'">
+                              <th class="text-right">{{obj.examName}}</th>
+                              <td><input ng-model="vital.vitalResult" class="form-control" type="text" placeholder="{{vital.vitalUnit}}" ></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 color_grid_onephy ">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"><strong>Examination</strong></label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <div class="tableArea tableAreaPhy">
+                        <div class="table-responsive">
+                          <table class="table table-borderless">
+                            <tr ng-repeat="obj in examData | orderBy: 'examSerial'">
+                              <th class="text-right">{{obj.examName}}</th>
+                              <td><input ng-model="vital.vitalResult" class="form-control" type="text" placeholder="{{vital.vitalUnit}}" ></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 color_grid_onephy  color_grid_onephy2">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"><strong>Sytemic Examination</strong></label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <div class="tableArea tableAreaPhy">
+                        <div class="table-responsive">
+                          <table class="table table-borderless">
+                            <tr ng-repeat="obj in systemicExamData | orderBy: 'examSerial'">
+                              <th class="text-right">{{obj.examName}}</th>
+                              <td><input ng-model="vital.vitalResult" class="form-control" type="text" placeholder="{{vital.vitalUnit}}" ></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_PhysicalExamination --> 
+          
+          <!-- start_Diagnosis -->
+          <div  class="tab-pane Diagnosis fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 padding_left">
+                  <div class="pannel_left pannel_left2 min_height">
+                    <h6 class="h6fevList">Favorit Diagnosis List</h6>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in favDiagnosisList">
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><input type="checkbox" name=""></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9 col-sm-12 padding_right3">
+                  <div class="diagnisis-table">
+                    <div class="diagnisis-table home-tow-component topPosition">
+                      <search-component 
+                    place="Type diagnosis..." 
+                    data="diagnosisData" 
+                    bind-type = 6
+                    bind-property= "prescritionData" 
+                    bind-type-property= "prescritionDataType"                    
+                    item-no-property = ""
+                    bind-item-no-property = "referenceId"
+                    display-property="diagnosisName" 
+                    on-select="onSelect(obj, listName)"
+                    list-name="diagnosisList"> </search-component>
+                    </div>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320 padding_all_diagonosis">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Diagnosis</th>
+                              <th style="width:60px;"></th>
+                            </tr>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in diagnosisList" ng-if="!obj.isDeleted">
+                              <td style="width: 10px;"><button ng-click="onMakeFavorit(obj,'favDiagnosisList')" class="btn btn-primary"> <i class="fa fa-angle-double-left" aria-hidden="true"></i> </button></td>
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><span ng-click="onDelete($index,'diagnosisList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_Diagnosis --> 
+          
+          <!-- start_Advice -->
+          <div  class="tab-pane Advice fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-3 col-sm-12 padding_left">
+                  <div class="pannel_left pannel_left2 min_height">
+                    <h6 class="h6fevList">Favorit Advice List</h6>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in favAdviceList">
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><input type="checkbox" name=""></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9 col-sm-12 padding_right3">
+                  <div class="diagnisis-table">
+                    <div class="diagnisis-table home-tow-component topPosition">
+                      <search-component 
+                    place="Type advice..." 
+                    data="adviceData" 
+                    bind-type = 8
+                    bind-property= "prescritionData" 
+                    bind-type-property= "prescritionDataType"                    
+                    item-no-property = ""
+                    bind-item-no-property = "referenceId"
+                    display-property="adviceEng" 
+                    on-select="onSelect(obj, listName)"
+                    list-name="adviceList"> </search-component>
+                    </div>
+                    <div class="table-responsive">
+                      <div class="scrool_ber height_table_320 padding_all_diagonosis">
+                        <table class="table table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Advice</th>
+                              <th style="width:60px;"></th>
+                            </tr>
+                          </thead>
+                          <tbody class="check_input">
+                            <tr ng-repeat="obj in adviceList" ng-if="!obj.isDeleted">
+                              <td style="width: 10px;"><button ng-click="onMakeFavorit(obj,'favAdviceList')" class="btn btn-primary"> <i class="fa fa-angle-double-left" aria-hidden="true"></i> </button></td>
+                              <td><strong>{{obj.prescritionData}}</strong></td>
+                              <td class="text-center"><span ng-click="onDelete($index,'adviceList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_Advice --> 
+          
+          <!-- start_Finalization -->
+          <div class="tab-pane Finalization fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-12 col-sm-12 color_grid_onephy finalization">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th style="text-align:right;">Assessment'n Plan:</th>
+                        <td><input type="text" class="form-control" id=""></td>
+                        <td><button type="button" class="btn btn-danger clearbtn">Clear</button></td>
+                      </tr>
+                      <tr>
+                        <th style="text-align:right;">Referral:</th>
+                        <td><input type="text" class="form-control" id=""></td>
+                        <td><button type="button" class="btn btn-danger clearbtn">Clear</button></td>
+                      </tr>
+                      <tr>
+                        <th style="text-align:right;">N.B:</th>
+                        <td><input type="text" class="form-control" id=""></td>
+                        <td><button type="button" class="btn btn-danger clearbtn">Clear</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_Finalization --> 
+          <!-- start_Finalization2 -->
+          <div class="tab-pane Finalization2 fade">
+            <div class="investigation_area investigation_area2">
+              <div class="row">
+                <div class="col-md-4 col-sm-12 color_grid_onephy ">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"> <strong>Assessment'n Plan</strong> </label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <textarea style="width: 100%;margin-top: 15px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 color_grid_onephy ">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"> <strong>Referral </strong> </label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <textarea style="width: 100%;margin-top: 15px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 color_grid_onephy  color_grid_onephy2">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"> <strong>N.B</strong> </label>
+                    <div class="table_content table_all_padding vitals_header">
+                      <textarea style="width: 100%;margin-top: 15px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end_Finalization2 --> 
+        </div>
+        <!-- end Tab panes --> 
+        
+      </div>
+    </div>
+  </div>
+  
+  <!-- start Patients History modal -->
+  <div class="mac-window clinicalRecord">
+    <div class="title-bar">
+      <div class="buttons">
+        <div class="close"></div>
+        <div class="minimize"></div>
+        <div class="maximize"></div>
+      </div>
+      <p class="modal_p"> Patients History (SHL-ICT)</p>
+    </div>
+    <div class="window">
+      <div class="all_report">
+        <div class="header_report"> 
+          <!-- hospital_info -->
+          <div class="hospital_info">
+            <div class="logo_hospital"><img src="assets/images/c_labaid_ltd.jpg" all=""></div>
+            <div class="hospital_others">
+              <h3>LABAID Specialized Hospital</h3>
+              <p> Mirpur-1 
+                Dhaka-1215 </p>
+            </div>
+          </div>
+          <!-- end hospital_info --> 
+          
+          <!-- patient_info -->
+          <div class="patient_all_info">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th>HN:</th>
+                  <td>R1576766602</td>
+                  <th>Name:</th>
+                  <td>MD.MASUD AHMED</td>
+                </tr>
+                <tr>
+                  <th>Cn.Date:</th>
+                  <td>12-12-2017</td>
+                  <th>Consult By:</th>
+                  <td>Dr.Rehnuma Jahan<br>
+                    (Obstetrics & Gynecology)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- end patient_info -->
+          <h2>OPD Clinical Record</h2>
+        </div>
+        
+        <!-- patient_all_info_middle -->
+        <div class="patient_all_info patient_all_info_middle">
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>Wt(kg)</th>
+                <th>BP</th>
+                <th>Pulse</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>71.5</td>
+                <td>120/70</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end patient_all_info_middle --> 
+        
+        <!-- p_lscs -->
+        <p class="p_lscs"> <span>had LSCS</span> <span>wound-healthly</span> </p>
+        <!-- p_lscs -->
+        
+        <h5 class="doctor_rx">R<sub>X</sub></h5>
+        
+        <!-- patient_all_info_middle -->
+        <div class="patient_all_info patient_all_info_middle patient_all_info_middle2">
+          <table class="table table-borderless table-sm">
+            <thead>
+              <tr>
+                <th>SL</th>
+                <th>Medicine</th>
+                <th>Route</th>
+                <th>Frequency</th>
+                <th>Per take</th>
+                <th>Instruction</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Calcium+Vitamin D(Calbo-D 30s Ph)</td>
+                <td>Oral</td>
+                <td>1+1+0</td>
+                <td>1 ab</td>
+                <td>Take After Food </td>
+                <td>Continue</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Vitamin B1+B6+B12 (Neuro B 30s Ph)</td>
+                <td>Orally</td>
+                <td>1+0+0</td>
+                <td>1 ab</td>
+                <td>Take After Food </td>
+                <td>3 months</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Calcium+Vitamin D(Calbo-D 30s Ph)</td>
+                <td>Oral</td>
+                <td>Once Daily</td>
+                <td>1 ab</td>
+                <td>Take After Food </td>
+                <td>Continue</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end patient_all_info_middle --> 
+        
+        <!-- p_lscs -->
+        <p class="p_lscs p_instruction"> <span><strong>Instruction</strong></span> <span>Take Rest</span> <span>Take Medications as prescribed</span> </p>
+        <!-- p_lscs -->
+        
+        <div class="col-md-12 text-right btn_modal">
+          <button type="button" class="btn btn-info">Apply</button>
+          <button type="button" class="btn btn-danger close close2">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end Patients History modal --> 
+  
+  <!-- start modal all patients history -->
+  <div class="mac-window modal_width patientHistory">
+    <div class="title-bar">
+      <div class="buttons">
+        <div class="close"></div>
+        <div class="minimize"></div>
+        <div class="maximize"></div>
+      </div>
+      <p class="modal_p"> Patient's History</p>
+    </div>
+    <div class="window">
+      <div class="all_report">
+        <div class="row padding_none report_patient_top ">
+          <div class="col-md-3 col-sm-12 all_padding_none border_hn">
+            <div class="form-row">
+              <div class="col text-right">
+                <label>HN:</label>
+              </div>
+              <div class="col-7">
+                <input type="text" class="form-control" placeholder="">
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-info">...</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 padding_left_p">
+            <div class="patient_all_info patient_all_info_middle patient_all_info_middle2">
+              <div class="border_area">
+                <table class="table table-borderless table-sm">
+                  <tbody>
+                    <tr>
+                      <th style="width:100px;">Nmae:</th>
+                      <td>Md.Masud Ahmed</td>
+                    </tr>
+                    <tr>
+                      <th>Date of Birth:</th>
+                      <td>31-12-1989</td>
+                    </tr>
+                    <tr>
+                      <th>Age:</th>
+                      <td>30 Years</td>
+                    </tr>
+                    <tr>
+                      <th>Gender:</th>
+                      <td>Male</td>
+                    </tr>
+                    <tr>
+                      <th>Blood Group:</th>
+                      <td>A+</td>
+                    </tr>
+                    <tr>
+                      <th>Contact No:</th>
+                      <td>01712768782</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-sm-12 all_padding_none">
+            <div class="tab_custom_area ">
+              <div class="scrool_ber height_table_112">
+                <table class="table table-bordered table-sm">
+                  <thead>
+                    <tr>
+                      <th style="width:116px;">Admission Date</th>
+                      <th style="width:116px;">Admission No</th>
+                      <th>Doctor Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                    <tr>
+                      <td>12-12-2017</td>
+                      <td>A1768787878</td>
+                      <td>MD.Masud AHmed</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        
+        <!--middle_content_modal-->
+        <div class="middle_content_modal">
+          <div class="row"> 
+            <!-- consultation_history -->
+            <div class="col-md-6 col-sm-12 consultation_history">
+              <div class="col-md-12 all_padding_none">
+                <h5>Consultation History</h5>
+                <div class="top_list">
+                  <div class="area_all_field">
+                    <div class="form-check form-check-inline check_list_inves">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInlineA" name="customRadioInlinea" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInlineA"><strong>OPD </strong></label>
+                      </div>
+                    </div>
+                    <div class="form-check form-check-inline check_list_inves">
+                      <div class="custom-contro5 custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInlineB" name="customRadioInlinea" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInlineB"><strong>IPD</strong></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="tab_custom_area ">
+                  <div class="scrool_ber height_table_200">
+                    <table class="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th style="width:116px;">Consultation No</th>
+                          <th style="width:116px;">Date</th>
+                          <th>Doctor's Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 all_padding_none">
+                <h5 class="pres_h5">Prescribed Medicine</h5>
+                <div class="tab_custom_area ">
+                  <div class="scrool_ber height_table_200">
+                    <table class="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th style="width:116px;">Consultation No</th>
+                          <th style="width:116px;">Date</th>
+                          <th>Doctor's Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                        <tr>
+                          <td>C1445454354</td>
+                          <td>A1768787878</td>
+                          <td>MD.Masud AHmed</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end consultation_history --> 
+            
+            <!-- investigation_result -->
+            <div class="col-md-6 col-sm-12 consultation_history">
+              <div class="col-md-12 all_padding_none">
+                <h5>Investigation Result</h5>
+                <div class="top_list">
+                  <div class="area_all_field">
+                    <div class="form-check form-check-inline cn_select">
+                      <label class="form-check-label" for="inlineCheckbox3">Matrix View</label>
+                    </div>
+                    <div class="form-check form-check-inline fetch_title">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheckb">
+                        <label class="custom-control-label" for="customCheckb">Populate Image</label>
+                      </div>
+                    </div>
+                    <div class="form-check form-check-inline fetch_title">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheckc">
+                        <label class="custom-control-label" for="customCheckc">Show In Group</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="tab_custom_area ">
+                  <div class="scrool_ber height_table_200">
+                    <table class="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th>Test Nmae</th>
+                          <th style="width:116px;">Date</th>
+                          <th style="width:140px;">Values</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong>12-12-2017</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 all_padding_none">
+                <div class="tab_custom_area ">
+                  <div class="scrool_ber height_table_240" style="margin-top:20px;">
+                    <table class="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th>Attribute Name</th>
+                          <th style="width:200px;">Values</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Anti-HBs</strong></td>
+                          <td><strong><10</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end investigation_result --> 
+          </div>
+        </div>
+        <!--end middle_content_modal--> 
+      </div>
+    </div>
+  </div>
+  <!-- end modal all patients history --> 
+  
+  <!-- start modal medicine setup -->
+  <div class="mac-window modal_width2 medicineSetup">
+    <div class="title-bar">
+      <div class="buttons">
+        <div class="close"></div>
+        <div class="minimize"></div>
+        <div class="maximize"></div>
+      </div>
+      <p class="modal_p">Medicine Setup</p>
+    </div>
+    <div class="window">
+      <div class="all_report">
+        <div class="row report_patient_top ">
+          <div class="col-md-12 col-sm-12 ">
+            <div class="patient_all_info patient_all_info_middle patient_all_info_middle2">
+              <div class="border_area border_area2">
+                <h6>Input Favorite Medicine</h6>
+                <div class="table-responsive">
+                  <table class="table table-borderless table-sm">
+                    <tbody>
+                      <tr>
+                        <th style="width:100px;">Generic Name:</th>
+                        <td style="width:216px;"><select class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                        <th style="width:90px;">Brand  Name:</th>
+                        <td style="width: 261px;"><select class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                        <th style="width:90px;">Strength:</th>
+                        <td style="width:196px;"><select class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                        <th style="width:90px;">P. Take:</th>
+                        <td><input type="text" class="form-control" id="" name="generic"></td>
+                      </tr>
+                      <tr>
+                        <th style="width:90px;">Does Freq:</th>
+                        <td><input type="text" class="form-control" id="" name="generic"></td>
+                        <th style="width:100px;">Rel. With Meal:</th>
+                        <td><select class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                        <th style="width:90px;">Duration:</th>
+                        <td colspan="3"><input style="width:20%; float:left;" type="text" class="form-control" id="" name="">
+                          <select style="width: 78%;float: right;" class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                      </tr>
+                      <tr>
+                        <th style="width:90px;">Instruction:</th>
+                        <td colspan="3"><input type="text" class="form-control" id="" name="generic"></td>
+                        <th style="width:90px;">Route:</th>
+                        <td colspan="3"><select class="form-control" id="exampleFormControlSelect1">
+                            <option>A Probiotic Combinatior</option>
+                            <option>A Probiotic Combinatior</option>
+                          </select></td>
+                      </tr>
+                      <tr>
+                        <td colspan="8" class="text-right"><button type="button" class="btn btn-info">Update</button>
+                          <button type="button" class="btn btn-danger">Clear</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--middle_content_modal-->
+        <div class="middle_content_modal">
+          <div class="row"> 
+            <!-- consultation_history -->
+            <div class="col-md-12 col-sm-12 consultation_history">
+              <div class="col-md-12 all_padding_none">
+                <div class="top_list">
+                  <div class="search_top">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="col-md-12 col-sm-1 col-form-label ">Search:</label>
+                      <div class="col-sm-5 col-md-12">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                      </div>
+                      <label for="inputEmail3" class="col-md-12 col-sm-12 col-form-label text-left">(Brand Name/Generic Name)</label>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="tab_custom_area ">
+                  <div class="scrool_ber height_table_200">
+                    <table class="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th style="width:;">Generic Name</th>
+                          <th style="width:;">Brand Name</th>
+                          <th>Per Take</th>
+                          <th>Does Freq.</th>
+                          <th>Route</th>
+                          <th>Relation With Meal</th>
+                          <th>N</th>
+                          <th>Duration</th>
+                          <th>Instruction</th>
+                          <th style="width:24px;">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr>
+                          <td>Acarbose</td>
+                          <td>Sugatrol 5mg</td>
+                          <td>50mg TAB</td>
+                          <td>1+1+1+</td>
+                          <td>Three times a...</td>
+                          <td>Orally</td>
+                          <td>Take after food</td>
+                          <td>3</td>
+                          <td>Month(s)</td>
+                          <td><button type="button" class="btn btn-danger remove_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end consultation_history --> 
+            
+          </div>
+        </div>
+        <!--end middle_content_modal--> 
+      </div>
+    </div>
+  </div>
+  <!-- end modal all patients history --> 
+  
+  <!-- print prescription --> 
+  
+  <!--prescription_invoice_area-->
+  <div class="prescription_invoice_area" id="print1"> 
+    
+    <!--start_prescription_top-->
+    
+    <table>
+      <thead>
+        <tr>
+          <td class="dorInfo" colspan="6"><h6>Dr. Mohiuddin Ahmed</h6>
+            <p>MBBS, FCPS (Internal Medicine)<br />
+              Consultant, Internal Medicine & ICU<br />
+              Special Interest in Diabetes, Endocrinology & Rheumatology<br />
+              Reg. No. A 36080</p></td>
+        </tr>
+        <tr style="border-bottom:solid 1px #000;" class="patientDetails">
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>HN ID</th>
+                <td>: R180908019</td>
+              </tr>
+              <tr>
+                <th>Nmae</th>
+                <td>: Masud Ahmed</td>
+              </tr>
+              <tr>
+                <th>Age</th>
+                <td>: 65Y 0M 1D</td>
+              </tr>
+            </table></td>
+          <td colspan="4" style="vertical-align:bottom; text-align:center;width: 404px;"><span><strong>Gender</strong></span> : Male </td>
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>Visit ID</th>
+                <td>: V180908019</td>
+              </tr>
+              <tr>
+                <th>Visit Date</th>
+                <td>: 08 Sep 2018</td>
+              </tr>
+              <tr>
+                <th>Visit Time</th>
+                <td>: 11:20 AM</td>
+              </tr>
+            </table></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6"><div class="main_medi_area">
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4> Chief Complains:- </h4>
+                    <p>Pain in different joints for 2 Yr</p>
+                    <p>No Cough/N oSOB</p>
+                    <p>Urine/Stool N</p>
+                    <p>Sleep adequate</p>
+                  </article>
+                </div>
+              </div>
+              <div class="pre_left_sideber_right">
+                <article class="prescription_detail_right ">
+                  <div class="rx">
+                    <p class="rxText">R<span>x</span></p>
+                  </div>
+                  <div class="medicine_title"> <span>1.</span>
+                    <p class="tablet_title">EXIUM 20MG CAP</p>
+                    <p class="titme_medicine"> ORAL-1+0+1 Before Meal 2 Week(s) </p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">2.</span>
+                    <p class="tablet_title">DEFLUX 10 MG TAB</p>
+                    <p class="titme_medicine">ORAL-1+0+1 Before Meal 2 Week(s)</p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">3.</span>
+                    <p class="tablet_title">RIVOTRIL 0.5 MG TAB</p>
+                    <p class="titme_medicine">ORAL-0+0+1 After Meal 2 Week(s)</p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">4.</span>
+                    <p class="tablet_title">NORFLU TAB</p>
+                    <p class="titme_medicine">0+0+1 After Meal Continue</p>
+                  </div>
+                </article>
+              </div>
+              <div style="clear:both"></div>
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4>Investigations Advised:-</h4>
+                    <p>(1) Complete Blood Count (CBC), (2) Urine R/M/E, (3) USG -
+                      Whole Abdomen with PVR 2D, (4) Creatinine, (5) Serum
+                      Electrolytes , (6) Serum TSH, (7) Random Blood Sugar (RBS),
+                      (8) HbA1c, (9) Lipid Profile (Random), (10) ECG, (11) X-Ray
+                      Chest PA view, (12) SGPT (ALT)</p>
+                  </article>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6"><div class="footer_Table">
+              <p><strong> Consulting Hours:</strong><br />
+                Saturday to Thursday: 5:00 PM to 8:00 PM<br />
+                Saturday, Sunday, Monday, Wednesday: 11:00 AM to 2:00 PM </p>
+            </div></td>
+        </tr>
+      </tfoot>
+    </table>
+    <!--end_prescription_top--> 
+    
+    <!--main_content--> 
+    
+  </div>
+  
+  <!--prescription_invoice_area-->
+  <div class="prescription_invoice_area print_tow" id="print2"> 
+    
+    <!--start_prescription_top-->
+    
+    <table>
+      <thead>
+        <tr>
+          <td class="dorInfo" colspan="6"><h6>Dr. Mohiuddin Ahmed</h6>
+            <p>MBBS, FCPS (Internal Medicine)<br />
+              Consultant, Internal Medicine & ICU<br />
+              Special Interest in Diabetes, Endocrinology & Rheumatology<br />
+              Reg. No. A 36080</p></td>
+        </tr>
+        <tr style="border-bottom:solid 1px #000;" class="patientDetails">
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>HN ID</th>
+                <td>: R180908019</td>
+              </tr>
+              <tr>
+                <th>Nmae</th>
+                <td>: Masud Ahmed</td>
+              </tr>
+              <tr>
+                <th>Age</th>
+                <td>: 65Y 0M 1D</td>
+              </tr>
+            </table></td>
+          <td colspan="4" style="vertical-align:bottom; text-align:center;width: 404px;"><span><strong>Gender</strong></span> : Male </td>
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>Visit ID</th>
+                <td>: V180908019</td>
+              </tr>
+              <tr>
+                <th>Visit Date</th>
+                <td>: 08 Sep 2018</td>
+              </tr>
+              <tr>
+                <th>Visit Time</th>
+                <td>: 11:20 AM</td>
+              </tr>
+            </table></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6"><div class="main_medi_area" style="padding-top:22px;">
+              <div class="pre_left_sideber" style="width:100%;">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4> Chief Complains: </h4>
+                    <p>Recurrent loose motion - greenish stool, 3 to 4 times a day for months</p>
+                    <p>- No systemic complaints</p>
+                    <p>Urine/Stool N</p>
+                    <p>Sleep adequate</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>History: </h4>
+                    <p>• Paediatric History:</p>
+                    <p>- No systemic complaints</p>
+                    <p>Birth History: C section, 3.3 kg, unevnetful<br />
+                      Feeding History: On formula for 6 months. Since then, formula, cerelac, shuji, khichuri<br />
+                      Milestones Of Development: Appropriate<br />
+                      Immunization History: Continuing<br />
+                      Family History: Only daughter of the parents<br />
+                      Socio-Economic History: Resides in Uttora, Dhaka.</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Vital Sign: </h4>
+                    <p>Pulse : 132, RR : 36, Temp : 97.2 F, OFC : 44cm, Weight : 8.8kg, Height : 68cm</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4> On Examination: </h4>
+                    <p> • General Exam:<br />
+                      Appearance: No dehyddration<br />
+                      Pallor: Mild<br />
+                      Throat: Normal<br />
+                      • Sytemic Examination:<br />
+                      Alimentary system: Abdomen> Not distended, soft, diffuse tenderness, no organomegaly, normal BS </p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Diagnosis:</h4>
+                    <p>(1) Healthy infant</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Investigation Notes:</h4>
+                    <p>AFDS FASD FAD FSDFSDFASDFSDFASDFASDFASDFASDFASDFASd</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Assessments:</h4>
+                    <p>ASDFASDF ASDF ASDFA SDFASDFASDFDSFSDFSDFASDFSDF</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>R<sub>X</sub></h4>
+                    <p>• XINC 100 ML<br />
+                      &nbsp;ORAL-1/2 tsf 8 hourly After Meal 14 Day(s)</p>
+                    <p> • NAPA 250 MG SUPP<br />
+                      &nbsp;
+                      PER RECTAL-6 hourly After Meal As Needed </p>
+                    <p> • SECLO 20 MG CAP<br />
+                      &nbsp;1+0+1 Before Meal Continue </p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Follow Up/Advice</h4>
+                    <p>1. Take complete rest for 7 days.</p>
+                    <p>2. Do not drink too much.</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Investigations Advised:</h4>
+                    <p>(1) Complete Blood Count (CBC), (2) Creatinine, (3) USG of Lower Abdomen 4D</p>
+                  </article>
+                </div>
+              </div>
+              <div style="clear:both"></div>
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4>Evening: 2:30 PM - 6:30 PM (Saturday to Thursday)</h4>
+                    <p>(PrinƟng Date: 09-09-2018</p>
+                  </article>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" style="height:160px;"><div class="footer_Table">
+              <p><strong>Evening:</strong> 2:30 PM - 6:30 PM (Saturday to Thursday)<br />
+                Printing Date: 12-12-2017<br />
+              </p>
+            </div></td>
+        </tr>
+      </tfoot>
+    </table>
+    <!--end_prescription_top--> 
+    
+    <!--main_content--> 
+    
+  </div>
+</div>
+<!-- end printOption -->
+
+<div id="alertMessage" class="alert alert-danger emptyMessage"> {{alertMessage}} </div>
+<div id="successMessage" class="alert alert-success emptyMessage"> {{successMessage}} </div>

@@ -1,0 +1,96 @@
+
+<div class="main_table_content ">
+
+  <!-- btnAllRow -->
+<div class="btnAllRow">
+ <button  title="Add Chif Complain" data-toggle="modal" data-target="#addEditAutoComModal"  class=" btn btn-success addBtnSetup"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+<button  title="Edit" data-toggle="modal" data-target="#addEditAutoComModal"  class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+<button  title="Delete" data-toggle="modal" data-target="#deleteAutoComModal"  class=" btn btn-danger addBtnSetup"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+</div>
+<!-- btnAllRow -->
+    <div class="height_table_490 tableSetupOther">
+      <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" id="autoCompTable" class="table table-hover"></table>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="addEditAutoComModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-md" role="document">
+  <div class="modal-content">
+    <div class="modal-header modal_header_custom">
+      <h5 class="modal-title" id="exampleModalLabel">Add Auto Complete</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body allformContent">
+      
+<form>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-4 col-form-label">Auto Key Code</label>
+  <div class="col-sm-8">
+    <input ng-model="autoComplete.autoKey" type="text" class="form-control" id="inputEmail3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-4 col-form-label">Auto Key Type</label>
+  <div class="col-sm-8">
+
+    <select ng-model="autoComplete.autoComType" ng-init="autoComplete.autoComType = 0" class="form-control"  convert-to-number>
+      <option value="0">--- Please Select ---</option>
+      <option value="1">Advice</option>
+      <option value="2">Chief Complain</option>
+      <option value="3">Diagnosis</option>
+      <option value="4">History</option>
+    </select>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">Value In English</label>
+  <div class="col-sm-8">
+    <input ng-model="autoComplete.autoComValEng" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">Value In Bangla</label>
+  <div class="col-sm-8">
+    <input ng-model="autoComplete.autoComValLocal" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+
+</form>    
+</div>
+    <div class="modal-footer footerCustom">
+      <button ng-click="resetAutoComplete()"  type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      <button ng-click="addEditAutoComplete()" data-dismiss="modal"   type="button" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+ <!-- delete modal -->
+<div class="modal fade" id="deleteAutoComModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body allformContent">
+        <h4 class="deleteh4">Do you want Delete?</h4>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="resetAutoComplete()" type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+        <button  ng-click="deleteAutoComplete()" data-dismiss="modal" type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){   
+    $("#autoCompTable").on('click', 'tr', function () {   
+      $('#autoCompTable tbody tr').removeClass("activetable");
+        $(this).addClass("activetable");
+    });
+  });
+</script>

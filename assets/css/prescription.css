@@ -1,0 +1,248 @@
+
+
+/*-------------------*/
+.print_popup{
+	margin-top:0px; width:777px;
+	}
+	.print_popup .modal-header{ border:0px;}
+	
+	.btn_print{
+   position: absolute;
+    left: 6px;
+    top: 6px;
+    z-index: 9999999;
+    background: #4dbce9;
+    border: 0px;
+    padding: 5px 9px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+}
+span.print_popup_span {
+    position: absolute;
+    right: 11px;
+    top: 7px;
+    font-size: 33px;
+    font-weight: normal;
+    line-height:30px;
+    color: #f00;
+    background: #fff;
+    border-radius: 100%;
+    width: 31px;
+    height: 30px;
+    border: solid 1px #eee;
+}
+.prescription_invoice_area {
+    font-size: 13px;
+ 
+    background-size: 100% 100%;
+    text-shadow: 0px 1px 0px #fff;
+    font-family: arial;
+    width: 60%;
+    height: 1098px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    margin-top: 0;
+}
+.prescription_invoice_area .modal-body{ padding:0px;}
+
+
+
+.left_barcode {
+    width: 179px;
+    float: left;
+    height: 30px;
+}
+.p_barcode {
+    width: 50%;
+    text-align: center;
+    margin-top: 4px;
+    font-size: 12px !important;
+}
+.right_barcode {
+    width: 179px;
+    float: right;
+    height: 30px;
+}
+.barcode_table{  border:0px !important; margin-bottom:0px;}
+.barcode_table td{  border:0px !important; padding:0px !important;}
+.barcode_table td{  border:0px !important;padding:0px !important;}
+.patient_table_info{}
+
+.patient_table_info{border: solid 1px #ccc;
+    padding: 1px;
+    margin: auto;
+    margin-bottom: 20px;top: -8px;
+    position: relative;
+    background: #E3E3EC !important;}
+.patient_table_info th{  border:0px !important; padding:2px !important;}
+.patient_table_info td{  border:0px !important;padding:2px !important;}
+.main_medi_area {
+    width: 100%;
+    margin: 5px auto;
+}
+.pre_left_sideber {
+    width: 40%;
+    padding-bottom: 30px;
+    margin-top: 10px;
+    float: left;
+}
+.pre_left_sideber_right {
+    width:59%;
+    padding-left: 4%;
+    float: right;
+    margin-top: 10px;
+    border-left: solid 1px #000;
+    min-height: 386px;
+}
+.prescription_detail_left {
+    width: 100%;
+    float: left;
+}
+.prescription_detail_left_name {
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+}
+.prescription_detail_left h4 {
+    margin-top: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+.prescription_detail_left_name p {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 0px;
+    font-size: 16px;
+   
+    margin-top: 4px;
+    line-height: 22px !important;
+    text-align: left;
+}
+.margin_pre h4 {
+    margin-bottom: 3px !important;
+    margin-top: 6px;font-size: 13px; font-weight:bold;
+   
+}
+.onexam p {
+    width: 100% !important;
+    float: left;
+    padding-left: 0% !important;
+    left: 2%;
+    position: relative;
+    margin-right: 3px;
+}
+.onexam p span {
+    font-weight: bold;
+    font-size: 12px;
+    width: 68px;
+    line-height: 17px;
+    float: left;
+    text-align: left;
+}
+span.vitalGroup {
+    text-decoration: underline;
+    width: 240px !important; font-weight:bold;
+}
+.prescription_detail_right {
+    width: 100%;
+    float: left;
+}
+.rx {
+    position: relative;
+    right: 17px;
+}
+.rx p {
+    font-size:26px;
+    color: #333;
+    position: relative;
+    margin-bottom:18px;
+}
+.rx p span {
+    position: absolute;
+    bottom: -9px;
+    left: 12px;
+}
+.medicine_title {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 7px;
+}
+.medicine_title span {
+    width: 22px;
+    height: 17px;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+.medicine_title p {
+    font-size: 15px;
+    float: left;
+	margin-bottom:3px;
+    text-align: left;
+}
+
+
+.tablet_title {
+    width: 90%;
+}
+.titme_medicine {
+    width: 95%;
+    padding-left: 4.5%;
+}
+
+.next_fllow_up {
+    width:100%;
+    float: left;
+    text-align: left;
+    border: solid 1px #eee;
+    padding: 6px;
+    margin-top: 20px;
+}
+.next_fllow_up p {
+    margin: 0px;    font-size: 13px;
+}
+.pres_area{ width:777px; margin:auto; border:solid 1px #d7d7d7; height:86vh; overflow:auto;}
+.pres_area th{ background:#E3E3EC !important; }
+ .float_custom{ width:100%; float:left;}
+ .btn_print2{
+	 float:right;
+    background: #4dbce9;
+    border: 0px;
+    padding: 5px 9px;
+    color: #fff;
+    border-radius: 4px; border:solid 1px #fff;
+    font-size: 14px;line-height: 14px !important;}
+
+    .dorInfo h6 {
+    font-size: 18px;
+    font-weight: bold; margin-bottom: 0px;
+}
+.dorInfo p{ font-size: 16px; }
+.patientDetails{font-size: 16px;}
+.show2{ display: none; }
+.footer_Table{ position: fixed; bottom: 0px; font-size: 16px; border-top: solid 1px #000; padding-top: 5px; width: 100%; }
+.prescription_invoice_area{ display: none; }
+.detailsp {
+    width: 16px;
+    height: 17px;
+    top: 4px;
+    position: relative;
+}
+@media print{
+.prescription_invoice_area{ display: block; }
+    .printOption > * { display: none; }
+    .printOption > .prescription_invoice_area{ display: block; }
+    #radiology_footer{ display: none; }
+    .prescription_invoice_area{ width: 100%; }
+    .container-fluid{ width: 100%; }
+    .container-fluid{ width: 100%; }
+}
+
+.done{background-color: #d4f3a4 !important;}
+.waiting{background-color: #e0eef9;}

@@ -1,0 +1,40 @@
+  <div class="table-responsive">
+    <div class="scrool_ber height_table_104">
+      <table class="table table-bordered table-sm activeColortable">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>SL #</th>
+            <th>Pres. Date</th>
+            <th>Cons. No</th>
+            <!-- <th>Consultant</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="openModal" ng-repeat="obj in $ctrl.consHistoryList" ng-dblclick="$ctrl.onSelect({obj : obj});"> 
+              <td>
+              <button  class="btn btn-primary" ng-click="$ctrl.printOldPres({obj : obj});" ng-disabled="obj.doctorNo != $ctrl.userNo">
+                  <i class="fa fa-print" aria-hidden="true"></i>
+              </button>
+              <!-- <button  class="btn btn-primary" ng-click="$ctrl.loadOldPres({obj : obj});" ng-disabled="$ctrl.presNumber != undefined">
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+              </button> -->
+              </td>
+              <td>{{$index+1}}</td>           
+              <td>{{obj.createdDate | date : "dd MMM yyyy"}}</td>
+              <td>{{obj.consultationId}}</td>
+              <!-- <td>{{obj.doctorName}}</td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+<script type="text/javascript">
+  $(document).ready(function(){   
+      $(".activeColortable").on('click', 'tr', function () {   
+        $('.activeColortable tbody tr').removeClass("activetableTable");
+          $(this).addClass("activetableTable");
+      });
+    });
+</script>

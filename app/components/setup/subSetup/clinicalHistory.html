@@ -1,0 +1,82 @@
+<div class="main_table_content">
+<!-- btnAllRow -->
+<div class="btnAllRow">
+  <button  title="Add Chif Complain" data-toggle="modal" data-target="#addEditClinicalHistoryModal"  class=" btn btn-success addBtnSetup">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </button>
+  <button  title="Edit" data-toggle="modal" data-target="#addEditClinicalHistoryModal"  class=" btn btn-warning addBtnSetup">
+    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  </button>
+  <button  title="Delete" data-toggle="modal" data-target="#clinicalHistoryDeleteModal"  class=" btn btn-danger addBtnSetup">
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  </button>
+</div>
+<!-- btnAllRow -->  
+<div class="height_table_490 tableSetupOther">
+  <table datatable="" id="complainTable" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-hover"></table>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addEditClinicalHistoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modalCustomWidth" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Add Clinical History</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body allformContent">
+        <form class="ng-pristine ng-valid">
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input ng-model="clinicalHistory.clinicalHistoryName"  type="text" class="form-control" id="inputPassword3" placeholder="">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer footerCustom">
+        <button  ng-click="resetClinicalHistory()"  type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button ng-click="addClinicalHistory()" data-dismiss="modal" type="button" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+ <!-- delete modal -->
+<div class="modal fade" id="clinicalHistoryDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body allformContent">
+        <h4 class="deleteh4">Do you want Delete?</h4>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="resetClinicalHistory()" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button  ng-click="deleteClinicalHistory()" data-dismiss="modal" type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alertMessage" class="alert alert-danger emptyMessage">
+  {{alertMessage}}
+</div>
+<div id="successMessage" class="alert alert-success emptyMessage">
+  {{successMessage}}
+</div>
+<script type="text/javascript">
+$(document).ready(function(){		
+	  $("#complainTable").on('click', 'tr', function () {		
+		  $('#complainTable tbody tr').removeClass("activetable");
+	      $(this).addClass("activetable");
+		});
+	});
+</script>
+ 
+	  	  

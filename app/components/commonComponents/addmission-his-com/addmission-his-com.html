@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <div class="scrool_ber height_table_104">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Addmission Date</th>
+          <th>Addmission No</th>
+          <th>Consultant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="openModal" ng-repeat="obj in addHistoryList">
+          <td>{{obj.addDate}}</td>
+          <td>{{obj.addNo}}</td>
+          <td>{{obj.consultant}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="clearfix"></div>
+</div>

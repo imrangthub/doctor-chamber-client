@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>PRESCRIPTION</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/images/favicon.png" />
+<link rel="stylesheet" href="">
+<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+<link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="assets/css/buttons.bootstrap4.min.css" rel="stylesheet">
+<link rel='stylesheet prefetch' href="assets/css/bootstrap-datepicker3.css">
+<link rel='stylesheet prefetch' href="assets/css/modal.css">
+<link href="app/components/drug/drug.css" rel='stylesheet'>
+<link href="assets/css/prescription.css" rel="stylesheet" type="text/css">
+<link href="assets/css/oncology.css" rel="stylesheet" type="text/css">
+<link href="assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+
+<link href="app/components/homeNurse/typeahead-style.css" rel="stylesheet" type="text/css">
+
+<script src="assets/bootstrap/js/jquery-1.12.4.js"></script>
+<script src='assets/js/jquery-ui.min.js'></script>
+<script src="assets/js/vendor/angular.min.js?v=1.1"></script>
+
+<script src='assets/js/ui-bootstrap-tpls.min.js'></script>
+<script src='assets/js/angular-ui-utils.min.js'></script>
+
+<script src="assets/js/moment.js"></script>
+<script src="assets/bootstrap/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/vendor/angular-datatables.js?v=1.1"></script>
+<!-- <script src="assets/bootstrap/js/dataTables.bootstrap4.min.js"></script> -->
+<script src="assets/js/vendor/ui-bootstrap-tpls.js"></script>
+<script src="assets/js/vendor/angular-resource.min.js?v=1.1"></script>
+<script src="assets/js/vendor/angular-ui-router.min.js?v=1.1"></script>
+<script src="assets/js/vendor/angular-messages.min.js?v=1.1"></script>
+<script src="assets/js/ocLazyLoad.min.js?v=1.1"></script>
+<script src="app/app.js?v=1.1"></script>
+<script src="app/app.config.js?v=1.1"></script>
+<script src="app/app.route.js?v=1.1"></script>
+<script src="app/app.service.js?v=1.1"></script>
+<script src="assets/js/vendor/ui-sortable.js?v=1.1"></script>
+<script src="app/app.factory.js?v=1.1"></script>
+
+</head>
+<body ng-app='app' class="body_bg">
+<main role="main" prescript-navto-tabkey-detector>
+<!--   <main role="main"> --> 
+  <!--start headerr-->
+  <header class="header">
+    <nav class="navbar navbar-expand-md navbar-dark  nav_custom header_main">
+      <div class="col-md-2 col-sm-12">
+        <div class="doc_avater"><a class="navbar-brand " href="#"><img class="logo_header" src="assets/images/pres_logo.png" alt=""></a> </div>
+      </div>
+      <div class="col-md-5 col-sm-12 text-left nave_toogle">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+
+            <!-- view for nurse -->
+            <li ng-show="logedUserInfo.isDoctor=='0'" ng-class="{activeNav:state=='worklistnurse'}" class="nav-item"> <a class="nav-link" href="#/worklistnurse">Work list</a> </li>
+            <!-- <li ng-show="logedUserInfo.isDoctor=='0'" ng-class="{activeNav:state=='homeNurse'}" class="nav-item"> <a class="nav-link" href="#/homeNurse">Home </a></li> -->
+             <!-- view for nurse -->            
+
+            <li ng-show="logedUserInfo.isDoctor=='1'" ng-class="{activeNav:state=='worklist'}" class="nav-item"> <a class="nav-link" href="#/worklist">Work list</a> </li>
+            
+            <li ng-show="logedUserInfo.formLink=='homeOne' && logedUserInfo.isDoctor=='1'" ng-class="{activeNav:state=='home'}" class="nav-item"> <a class="nav-link" href="#/home">Home </a> </li>
+            <li ng-show="logedUserInfo.formLink=='homeTwo' && logedUserInfo.isDoctor=='1'"  ng-class="{activeNav:state=='hometwo'}" class="nav-item"> <a class="nav-link" href="#/hometwo">Home</a> </li>
+	        	<li ng-show="logedUserInfo.formLink=='homeThree' && logedUserInfo.isDoctor=='1'" class="nav-item" ng-class="{activeNav:state=='home3'}"> <a class="nav-link" href="#/home3">Home</a> </li>		
+              
+            <!-- <li ng-show="logedUserInfo.isDoctor=='1'" ng-class="{activeNav:state=='drug'}" class="nav-item"> <a class="nav-link" href="#/drug">Drug Setup</a> </li> -->
+            <li ng-show="logedUserInfo.isDoctor=='1'" ng-class="{activeNav:state=='setup'}" class="nav-item"> <a class="nav-link" href="#/setup">Setup</a> </li> 
+          </ul>
+        </div>
+      </div>
+
+       <div class="col-md-3 col-sm-12 text-left">
+        <div class="docTitleHeader">
+          <i class="fa fa-user-md" aria-hidden="true"></i>
+          {{logedUserInfo.empName}}
+        </div>
+       </div>
+      <div class="col-md-1 col-sm-12">
+        <clock-component></clock-component>
+      </div>
+      
+      <div class="col-md-1 col-sm-12 text-right">
+        <button class="log_out">
+          <a  href="#/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <!--end header-->
+  
+  
+  <div ui-view></div>
+  
+  <!--start footer-->
+  <!-- <footer id="radiology_footer">
+    <div class="col-lg-12 text-center">
+      <p>MySoft Limited©2018</p>
+    </div>
+  </footer> -->
+  <!--end footer--> 
+</main>
+</body>
+<script src="app/components/login/login.js?v=1.1"></script>
+<script src="app/components/login/logout.js?v=1.1"></script>
+
+
+<script src="app/components/home/home.js?v=1.1"></script>
+<script src="app/components/homeTwo/homeTwo.js?v=1.1"></script>
+<script src="app/components/homeThree/homeThree.js?v=1.1"></script>
+<script src="app/components/homeFour/homeFour.js?v=1.1"></script>
+<script src="app/components/homeNurse/homeNurse.js?v=1.1"></script>
+<script src="app/components/workList/workList.js?v=1.1"></script>
+<script src="app/components/workListNurse/workListNurse.js?v=1.1"></script>
+<script src="app/components/error/error.js?v=1.1"></script>
+
+<script src="app/components/commonComponents/new-search/newSearch.js?v=1.1"></script>
+<script src="app/components/commonComponents/cons-his-com/cons-his-com.js?v=1.1"></script>
+<script src='app/components/commonComponents/clock-component/clock-component.js?v=1.1'></script>
+<script src="app/components/commonComponents/medicine-component/medicineComponent.js?v=1.1"></script>
+<script src="app/components/commonComponents/addmission-his-com/addmission-his-com.js?v=1.1"></script>
+<script src="app/components/commonComponents/clinical-component/clinical-component.js?v=1.1"></script>
+<script src='app/components/commonComponents/opd-medicine-component/opd-medicine-component.js?v=1.1'></script>
+<script src="app/components/commonComponents/generic-search-component/genericSearchComponent.js?v=1.1"></script>
+<script src="app/components/commonComponents/investigation-search-component/investigationSearchComponent.js?v=1.1"></script>
+
+<!-- setup js -->
+<script src="app/components/setup/setup.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/patient.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/clinicalHistorySetupOne.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/chiefComplain.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/onExamination.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/illnessHistory.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/diagnosis.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/visitNote.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/advice.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/manufacturer.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/shortKey.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/autoComplete.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/signatureSetup.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/doctorWisePscrip.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/finalization.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/physicalExamGroup.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/historyGroup.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/history.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/physicalExam.js?v=1.1"></script>
+<script src="app/components/setup/subSetup/userPreference.js?v=1.1"></script>
+
+<!-- setup-2 js -->
+<script src="app/components/setup2/setup.js?v=1.1"></script>
+<script src="app/components/setup2/menuComponent/menu.js?v=1.1"></script>
+<script src="app/components/setup2/clinicalHistoryComponent/clinical-history.js?v=1.1"></script>
+<script src="app/components/setup2/chiefComplainComponent/chief-complain.js?v=1.1"></script>
+<script src="app/components/setup2/userPreferenceComponent/user-preference.js?v=1.1"></script>
+<script src="app/components/setup2/doctorWisePrescriptionComponent/doctor-wise-prescription.js?v=1.1"></script>
+
+<script src="app/components/drug/drug.js?v=1.1"></script>
+
+<!--bootstrap.js-->
+<script src="assets/bootstrap/js/jquery-1.12.4.js"></script>
+<script src="assets/bootstrap/js/popper.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src='assets/bootstrap/js/jquery-ui.min.js'></script>
+<script src="assets/bootstrap/js/holder.min.js"></script>
+
+<!--bootstrap-datepicker.js-->
+<script src='assets/bootstrap/js/bootstrap-datepicker.js'></script>
+
+<!--ckeditor js-->
+<script src="assets/ckeditor/ckeditor.js"></script>
+<script src="assets/ckeditor/samples/js/sample.js"></script>
+
+<script>
+  var dib1 = document.getElementById("print1");
+  var dib2 = document.getElementById("print2");
+    // dib1.style.display = "none";   
+    // dib2.style.display = "none";
+  function print1() {
+    var dib1 = document.getElementById("print1");
+    var dib2 = document.getElementById("print2");
+    dib1.style.display = "block";   
+    dib2.style.display = "none";
+    //  $("#print1").addClass("prescription_invoice_area");
+    window.print();
+    dib1.style.display = "none";  
+  }
+
+  function print2() {
+    var dib1 = document.getElementById("print1");
+    var dib2 = document.getElementById("print2");
+    dib1.style.display = "none";   
+    dib2.style.display = "block";
+    window.print();
+    dib2.style.display = "none";  
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div class="main_table_content maincontent2">
+ <div class="btnAllRow">
+<!-- <button title="Add Chif Complain" data-toggle="modal" data-target="" class=" btn btn-success addBtnSetup"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+<button title="Edit" data-toggle="modal" data-target="" class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+</button>
+
+ -->
+  <button title="Delete" data-toggle="modal" data-target="" class=" btn btn-success addBtnSetup" ng-click="saveUserPreference()">Save</button>
+ </div>
+<div class="scrool_ber height_table_530 marginTabletop">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th style="width: 5%;">Sl.No.</th>
+        <th style="width: 35%;">Type</th>
+        <th style="width: 10%;">Order</th>
+        <th style="width: 40%">Name</th>
+        <th style="width: 10%; text-align: center;">Active Preference</th>
+        <th style="width: 10%;">Show in Report</th>
+        <th style="width: 5%;"><i class="fa fa-arrows-alt" style="font-size: 20px;color: #1f7080;"></i> </th>
+      </tr>
+    </thead>
+    <tbody ui-sortable="sortableOptions" ng-model="prescriptionPreferenceList">
+      <tr ng-repeat="obj in prescriptionPreferenceList |orderBy: 'preferencesSerial'"  ng-init="obj.userNo=userNo" >
+        <td style="width: 5%;">{{$index + 1}} </td>      
+        <td style="width: 35%;">
+        <span>{{obj.preferencesType}}</span>
+        </td>
+        <td style="width: 10%; text-align: center;">{{obj.preferencesSerial}}</td>
+                <td style="width: 50%">
+          <input type="string" ng-model="obj.title" style="width: 100%;">
+        </td>
+
+        <td ng-if="1== obj.preferencesDataType" style="width: 10%;">        
+          <input  type="checkbox" class="selectCheck" ng-true-value="1" ng-false-value="0" ng-model="obj.preferencesValue">
+        </td>
+
+        <td ng-if="4 == obj.preferencesDataType" style="width: 10%;">
+        	<textarea rows="2" cols="50" ng-model="obj.preferencesValue"></textarea>
+        </td>
+        
+        <td  style="width: 10%;">   
+          <input  type="checkbox" class="selectCheck" ng-true-value="1" ng-false-value="0" ng-model="obj.preferencesShowInReport">
+        </td>
+       <td class="text-center" style="vertical-align: middle;cursor: pointer;" style="width: 5%;"><i class="fa fa-arrows-alt" style="font-size: 20px;color: #1f7080;"></i> </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+</div>
+</div>
+
+
+<div id="alertMessage" class="alert alert-danger emptyMessage">
+  {{alertMessage}}
+</div>
+<div id="preferncecSuccessMessage" class="alert alert-success emptyMessage">
+  {{successMessage}}
+</div>

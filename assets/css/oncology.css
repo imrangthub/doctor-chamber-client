@@ -1,0 +1,195 @@
+
+.protocolTop h4 {
+    line-height: 44px;
+    margin-bottom: 0px;
+    padding-left: 1%;font-family: roboto;
+}
+
+.protocolTop button{
+        margin-right: 8px;
+    padding: 4px 16px;margin-top: 4px; 
+}
+.allBtnG button {
+    padding: 2px 7px;
+    margin-right: 3%;
+}
+
+/*.protocolArea table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+
+    top: -27px;
+}
+
+.protocolArea table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+
+    top: -25px;
+}*/
+
+.allformContent .form-control{border: solid 1px #6cb8ce;height: 29px; resize: none; border-radius: 0px !important;}
+
+
+
+.deleteh4 {
+    color: #E91E63;
+    font-size:24px;font-family: roboto;
+}
+.customModal{max-width: 99%; margin-top: 0px;}
+.paddNonech{padding-left: 0px !important; padding-right: 0px !important;} 
+.paddNonleftech{padding-left: 0px !important;padding-right: 9px;}
+.allformContent input{ height: 34px; }
+.allformContent .form-group{ margin-bottom:6px; }
+.allformContent label{ margin-bottom: 4px;
+    text-align: right;
+    line-height: 15px}
+.footerCustom{ padding: 8px; }
+.tableAreaCemo {
+    width: 100%;
+
+}
+
+.topForm {
+    width: 100%;
+    border: solid 1px #6cb8ce;border-radius: 4px;
+    padding: 3px;
+    padding-right: 1%; margin-bottom: 10px;
+}
+.tableAreaCemo table th{
+    background: #e1f2f5;
+    white-space: nowrap;
+    color: #017080;
+    font-size: 13px;
+}
+.tableAreaCemo table td{ padding: 1px; font-size: 13px; }
+.dtnAaddMi button {
+    padding: 0px 6px;
+    font-size: 13px;
+    font-weight: normal;
+}
+.tableAreaCemo table td select{ height: 27px !important;padding-top: 3px;padding-bottom: 0px; }
+.tableAreaCemo table td input{ height: 27px !important;padding-top: 3px;padding-bottom: 0px; }
+.textarea {
+    height: 66px !important;
+    position: absolute;
+    width: 98%;
+}
+
+.patientidPro input{ height: 32px;    border: solid 1px #9cc9d6; }
+.patientidPro select{ height: 32px;    border: solid 1px #9cc9d6; }
+.patientidPro .input-group-text{height: 32px; }
+.patientidPro {
+    margin-top: 7px;
+}
+.bordertablep{ border-top: solid 1px #9cc9d6;background: #f7f7f7;font-size: 14px;}
+.bordertablep th{ font-size: 14px !important; font-weight: bold !important; }
+
+.bordertablep2{font-size: 14px;padding-left: 12px;}
+.bordertablep3{background: #fbfbfb;border-right: solid 1px #9cc9d6; padding-top: 1%;}
+.bordertablep4{ top: 10px; position: relative; }
+.bordertablep2 th{ font-size: 14px !important; font-weight: bold !important; }
+.h4Border{border-bottom: solid 1px #9cc9d6;}
+.tablealight th{ text-align: right; }
+.tablealight td input{ text-align: right; }
+
+.hrborder{ margin-top: 0px; margin-bottom: 0px; background: #b4e5f3; }
+
+
+.searchPro label{
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+.searchPro .form-group{ margin-bottom: 0px; }
+.searchPro input {
+    height: 33px;
+    width: 99.5%;
+    border: solid 1px #21b0d1;
+       margin: 4px;    background: #fafbd8;
+}
+button.btnsize{ padding: 0px 10px;
+    height: 20px;
+    top: -2px;
+    position: relative; }
+    h5.titleh5 {
+    width: 100%;
+    float: left;
+    font-size: 17px;
+    /* font-weight: bold; */
+    margin-bottom: 4px;
+    margin-top: 13px;color: #1991ad;
+}
+h5.marginNoneB{ margin-bottom: 0px; }
+.btnFooter{ position: relative; }
+.btnFooter button {
+    position: absolute;
+    top: -35px;
+    padding: 3px 15px;
+    right: 266px;
+    /* margin-right: 16px; */
+}
+.btnFooter2 button{top:0px;right: 54px;}
+.btnFooter2 button.pbtn {
+    right: -13px;
+}
+button.pbtn{ right: 196px; }
+.paddRightp{ padding-right: 0px; }
+.paddLeftp{ padding-left: 0px; }
+.custombg th{    background: transparent !important;}
+.top_section_alloncology{
+    width: 100%;
+    margin-top: -10px;
+ border: 0px;
+}
+
+.searchBtnP {
+    padding: 0px 11px;
+    margin-right: -4px;
+    height: 33px;
+    top: 4px;
+    position: relative;border: solid 1px #21b0d1;
+}
+
+.inputMarginNone{ margin-bottom: 3px !important; }
+.spanDateIcon{
+    top: 3px !important;}
+
+    .bordertablep5 {
+    top: 12px;
+    position: relative;
+}
+.dateDueP{ width: 100%;float: left; }
+.dateDueP {
+    width: 100%;
+}
+.dateDueP label {
+    width: 100%;
+    float: left; margin-top: 0px; margin-bottom: 0px; height: 23px;
+}
+.dateDueP p {
+    width: 100%;
+    float: right;
+    text-align: left; margin-bottom: 0px;height: 23px;
+}
+.dateDueP input{ height: 23px !important; margin-bottom: 2px; }
+
+.dateDueP label:nth-child(2n+1){
+    background: #fff;
+}
+.dateDueP p:nth-child(2n+1){
+    background: #fff;
+}
+
+.dateDueP .date_picker_custom {
+    width: 200px;
+
+}
+.custombg td{ padding: 2px !important; }
+.gbBtn {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding: 2px 12px !important;
+}
+.worklist {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.tab_custom_areaworklist{border-top: solid 1px #b5d4e6 !important; margin-top: 10px !important;}
+.worklistArea{ width: 99%; margin:12px auto; }

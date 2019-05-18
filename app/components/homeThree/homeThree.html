@@ -1,0 +1,562 @@
+<style type="text/css">
+.home-three-search-component {
+	position: relative;
+	z-index: 10000;
+}
+</style>
+<div ng-include="'./app/components/home-3/modal/allModal.html'"></div>
+<div ng-include="'./app/components/home-3/modal/RX.html'"></div>
+<div ng-include="'./app/components/home-3/modal/advice.html'"></div>
+<div ng-include="'./app/components/home-3/modal/followup.html'"></div>
+<!-- start printOption -->
+<div class="printOption">
+<div class="container-fluid">
+  <div class="top_section_all">
+    <div class="row padding_none">
+      <div class="col-md-8 col-sm-12">
+        <div class="doctorTitle">
+          <h3>Dr. Md. Asaduzzaman Rasel</h3>
+          <p>MBBS, FCPS (Gynase)</p>
+          <p>Gynase & OBS Specialist & Surgeon</p>
+          <h6>Associat Prof. (DCIMMCH)</h6>
+        </div>
+      </div>
+      
+       
+          <div class="col-md-4 col-sm-12 paddLeftRight">
+            <div class="footer_btn footer_btn2 text-right">
+              <input class="form-check-input detailsp" type="checkbox" id="checht">
+              <label class="form-check-label" for="checht"> Details Prescription </label>
+              &nbsp;&nbsp;
+              <button ng-click="onSave()"  type="button" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+              <button ng-click="onPrint($event);" type="button" class="btn btn-primary clicktoggle show1"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+       <!--        <button onClick="print2()" type="button" class="btn btn-primary clicktoggle show2"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print2</button> -->
+            </div>
+          </div>
+        
+      
+      <div class="patient_details">
+        <div class="table-responsive">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th style="width: 51px;">Name:</th>
+                <td style="width: 321px;">MD. Masud Ahmed</td>
+                <th style="width: 41px;">Age:</th>
+                <td style="width: 201px;">30 Years</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="main_table_content" id="homeThreeMainTableContent">
+      <div class="row">
+        <div class="col-md-4 col-sm-12 borderRightMedicine allullist"> 
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>Chief Complain:</span> </h4>
+            <div class="tableAreaType">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="border: 0px !important;position: relative;"> <search-component 
+                          place="Type Chief Complain..." 
+                          data="chiefComplainData" 
+                          bind-type = 8
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "referenceId"
+                          display-property="chiefComName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="chiefComplainList"> </search-component>
+                    </th>
+                      </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <ul class="list-inline list-group chief_com scrool_ber height_tableMin_123 fullWidth">
+              <li ng-repeat="chiefComplain in chiefComplainList" ng-if="!chiefComplain.isDeleted">
+                <p>
+                  <input class="form-control" type="text" ng-model="chiefComplain.prescritionData" >
+                </p>
+                <span ng-click="onDelete($index,'chiefComplainList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+            </ul>
+          </ul>
+          <!--end  ul --> 
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>On Examination:</span> </h4>
+            <div class="tableArea tableAreaOnExam">
+              <div class="table-responsive">
+                <div class="scrool_ber height_tableMin_120">
+                  <table class="table table-borderless">
+                    <tbody>
+                        <tr ng-repeat="vital in vitalData | orderBy: 'vitalSerial'">
+                        <th class="text-right">{{vital.vitalName}}</th>
+                        <td><input ng-model="vital.vitalResult" class="form-control" type="text" placeholder="{{vital.vitalUnit}}" ></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ul>
+          <!--end  ul --> 
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>Diagnosis:</span> </h4>
+            <div class="tableAreaType">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="border: 0px !important;position: relative;"> <search-component 
+                          place="Type diagnosis..." 
+                          data="diagnosisData" 
+                          bind-type = 6
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "referenceId"
+                          display-property="diagnosisName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="diagnosisList"> </search-component>
+                    </th>
+                      </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <ul class="list-inline list-group chief_com scrool_ber height_tableMin_104 fullWidth">
+              <li ng-repeat="diagnosis in diagnosisList" ng-if="!diagnosis.isDeleted">
+                <p>
+                  <input class="form-control" type="text" ng-model="diagnosis.prescritionData" >
+                </p>
+                <span ng-click="onDelete($index,'diagnosisList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+            </ul>
+          </ul>
+          <!--end  ul --> 
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>Investigation:</span> </h4>
+            <div class="tableAreaType">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="border: 0px !important;position: relative;">
+                     <search-component 
+                                place="Type investigation..." 
+                                data="investigatData" 
+                                bind-type = 9
+                                bind-property= "prescritionData" 
+                                bind-type-property= "prescritionDataType"                    
+                                item-no-property = ""
+                                bind-item-no-property = "referenceId"
+                                display-property="itemName" 
+                                on-select="onSelect(obj, listName)"
+                                list-name="investigatList"> 
+                      </search-component>
+                    </th>
+                      </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <ul class="list-inline list-group chief_com scrool_ber height_tableMin_104 fullWidth">
+              <li ng-repeat="investigat in investigatList" ng-if="!investigat.isDeleted">
+                <p>
+                  <input class="form-control" type="text" ng-model="investigat.prescritionData" >
+                </p>
+                <span ng-click="onDelete($index,'investigatList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+            </ul>
+          </ul>
+          <!--end  ul --> 
+        </div>
+        <div class="col-md-8 col-sm-12 right_pres right_pres2" > 
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>R<sub>X</sub></span></h4>
+            <div class="tableAreaType">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="border: 0px !important;position: relative;">
+                      <medicine-component 
+                          place="Type brand name..."
+                          data="medicineData"
+                          consider-generic="true"
+                          bind-type = 4
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "itemNo"
+                          display-property="'brandName'"
+                          on-select="onSelect(obj, listName)"> 
+                      </medicine-component>  
+                      <table class="tabletdPadding  tabledrug2 table table-bordered table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th style="width:38px;"></th>
+                            <th style="width:130px;">Form</th>
+                            <th>Brand Name</th>
+                            <th style="width:150px;">Strength</th>
+                            <th style="width:180px;">Dose</th>
+                            <th style="width:250px;">Relation With Meal</th>
+                            <th style="width:150px;">Duration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="medicine in medicineList" ng-if="!medicine.isDeleted">
+                            <td><button class="btnRemove" ng-click="onDelete($index,'medicineList')"> <i class="fa fa-minus-square-o" aria-hidden="true"></i> </button></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.form"></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.brandName"></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.strength"></td>
+                            <td><input class="form-control borderNone" value="1+1+1" ng-model="medicine.dosage"></td>
+                            <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.relationWithMeal"></td>
+                            <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.duration"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <ul class="list-inline list-group chief_com scrool_ber height_table_300 fullWidth">
+            </ul>
+          </ul>
+          <div class="clearfix"></div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12 bottomTtitle">
+          <!--start  ul -->
+          <ul class="list-group list-inline allListType">
+            <h4><span>Advice:</span></h4>
+            <div class="tableAreaType">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="border: 0px !important;position: relative;"> 
+                    <search-component 
+                                place="Type advice..." 
+                                data="adviceData" 
+                                bind-type = 9
+                                bind-property= "prescritionData" 
+                                bind-type-property= "prescritionDataType"                    
+                                item-no-property = ""
+                                bind-item-no-property = "referenceId"
+                                display-property="adviceEng" 
+                                on-select="onSelect(obj, listName)"
+                                list-name="adviceList"> 
+                      </search-component>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <ul class="list-inline list-group chief_com scrool_ber height_table_120 fullWidth">
+              <li ng-repeat="advice in adviceList" ng-if="!advice.isDeleted">
+                <p>
+                  <input class="form-control" type="text" ng-model="advice.prescritionData" >
+                </p>
+                <span ng-click="onDelete($index,'adviceList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+            </ul>
+          </ul>
+          <!--start  ul -->
+          </div>
+          
+          <div class="col-md-6 col-sm-12 followUpTitle">
+          <ul class="list-group list-inline">
+              <h4><span>Follow-up:</span>
+                <button ng-click="Followup()" class="btn btn-info"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+              </h4>
+            </ul>
+            
+            <p class="followUp">
+            Please Come After 7 Day's Later
+            </p>
+            
+        </div>
+        </div>
+         </div>
+         
+         
+           
+       
+      </div>
+    </div>
+  </div>
+  <!-- print prescription --> 
+  
+  <!--prescription_invoice_area-->
+  <div class="prescription_invoice_area" id="print1"> 
+    <!--start_prescription_top-->
+    <table>
+      <thead>
+        <tr>
+          <td class="dorInfo" colspan="6"><h6>Dr. Mohiuddin Ahmed</h6>
+            <p>MBBS, FCPS (Internal Medicine)<br />
+              Consultant, Internal Medicine & ICU<br />
+              Special Interest in Diabetes, Endocrinology & Rheumatology<br />
+              Reg. No. A 36080</p></td>
+        </tr>
+        <tr style="border-bottom:solid 1px #000;" class="patientDetails">
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>HN ID</th>
+                <td>: R180908019</td>
+              </tr>
+              <tr>
+                <th>Nmae</th>
+                <td>: Masud Ahmed</td>
+              </tr>
+              <tr>
+                <th>Age</th>
+                <td>: 65Y 0M 1D</td>
+              </tr>
+            </table></td>
+          <td colspan="4" style="vertical-align:bottom; text-align:center;width: 404px;"><span><strong>Gender</strong></span> : Male </td>
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>Visit ID</th>
+                <td>: V180908019</td>
+              </tr>
+              <tr>
+                <th>Visit Date</th>
+                <td>: 08 Sep 2018</td>
+              </tr>
+              <tr>
+                <th>Visit Time</th>
+                <td>: 11:20 AM</td>
+              </tr>
+            </table></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6"><div class="main_medi_area">
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4> Chief Complains:- </h4>
+                    <p>Pain in different joints for 2 Yr</p>
+                    <p>No Cough/N oSOB</p>
+                    <p>Urine/Stool N</p>
+                    <p>Sleep adequate</p>
+                  </article>
+                </div>
+              </div>
+              <div class="pre_left_sideber_right">
+                <article class="prescription_detail_right ">
+                  <div class="rx">
+                    <p class="rxText">R<span>x</span></p>
+                  </div>
+                  <div class="medicine_title"> <span>1.</span>
+                    <p class="tablet_title">EXIUM 20MG CAP</p>
+                    <p class="titme_medicine"> ORAL-1+0+1 Before Meal 2 Week(s) </p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">2.</span>
+                    <p class="tablet_title">DEFLUX 10 MG TAB</p>
+                    <p class="titme_medicine">ORAL-1+0+1 Before Meal 2 Week(s)</p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">3.</span>
+                    <p class="tablet_title">RIVOTRIL 0.5 MG TAB</p>
+                    <p class="titme_medicine">ORAL-0+0+1 After Meal 2 Week(s)</p>
+                  </div>
+                  <div class="medicine_title"> <span class="ng-binding">4.</span>
+                    <p class="tablet_title">NORFLU TAB</p>
+                    <p class="titme_medicine">0+0+1 After Meal Continue</p>
+                  </div>
+                </article>
+              </div>
+              <div style="clear:both"></div>
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4>Investigations Advised:-</h4>
+                    <p>(1) Complete Blood Count (CBC), (2) Urine R/M/E, (3) USG -
+                      Whole Abdomen with PVR 2D, (4) Creatinine, (5) Serum
+                      Electrolytes , (6) Serum TSH, (7) Random Blood Sugar (RBS),
+                      (8) HbA1c, (9) Lipid Profile (Random), (10) ECG, (11) X-Ray
+                      Chest PA view, (12) SGPT (ALT)</p>
+                  </article>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6"><div class="footer_Table">
+              <p><strong> Consulting Hours:</strong><br />
+                Saturday to Thursday: 5:00 PM to 8:00 PM<br />
+                Saturday, Sunday, Monday, Wednesday: 11:00 AM to 2:00 PM </p>
+            </div></td>
+        </tr>
+      </tfoot>
+    </table>
+    <!--end_prescription_top--> 
+    
+    <!--main_content--> 
+    
+  </div>
+  <!--prescription_invoice_area-->
+  <div class="prescription_invoice_area print_tow" id="print2"> 
+    
+    <!--start_prescription_top-->
+    <table>
+      <thead>
+        <tr>
+          <td class="dorInfo" colspan="6"><h6>Dr. Mohiuddin Ahmed</h6>
+            <p>MBBS, FCPS (Internal Medicine)<br />
+              Consultant, Internal Medicine & ICU<br />
+              Special Interest in Diabetes, Endocrinology & Rheumatology<br />
+              Reg. No. A 36080</p></td>
+        </tr>
+        <tr style="border-bottom:solid 1px #000;" class="patientDetails">
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>HN ID</th>
+                <td>: R180908019</td>
+              </tr>
+              <tr>
+                <th>Nmae</th>
+                <td>: Masud Ahmed</td>
+              </tr>
+              <tr>
+                <th>Age</th>
+                <td>: 65Y 0M 1D</td>
+              </tr>
+            </table></td>
+          <td colspan="4" style="vertical-align:bottom; text-align:center;width: 404px;"><span><strong>Gender</strong></span> : Male </td>
+          <td ><table>
+              <tr>
+                <td colspan="2"><img class="left_barcode" src="assets/images/download.png" alt="" /></td>
+              </tr>
+              <tr>
+                <th>Visit ID</th>
+                <td>: V180908019</td>
+              </tr>
+              <tr>
+                <th>Visit Date</th>
+                <td>: 08 Sep 2018</td>
+              </tr>
+              <tr>
+                <th>Visit Time</th>
+                <td>: 11:20 AM</td>
+              </tr>
+            </table></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="6"><div class="main_medi_area" style="padding-top:22px;">
+              <div class="pre_left_sideber" style="width:100%;">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4> Chief Complains: </h4>
+                    <p>Recurrent loose motion - greenish stool, 3 to 4 times a day for months</p>
+                    <p>- No systemic complaints</p>
+                    <p>Urine/Stool N</p>
+                    <p>Sleep adequate</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>History: </h4>
+                    <p>• Paediatric History:</p>
+                    <p>- No systemic complaints</p>
+                    <p>Birth History: C section, 3.3 kg, unevnetful<br />
+                      Feeding History: On formula for 6 months. Since then, formula, cerelac, shuji, khichuri<br />
+                      Milestones Of Development: Appropriate<br />
+                      Immunization History: Continuing<br />
+                      Family History: Only daughter of the parents<br />
+                      Socio-Economic History: Resides in Uttora, Dhaka.</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Vital Sign: </h4>
+                    <p>Pulse : 132, RR : 36, Temp : 97.2 F, OFC : 44cm, Weight : 8.8kg, Height : 68cm</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4> On Examination: </h4>
+                    <p> • General Exam:<br />
+                      Appearance: No dehyddration<br />
+                      Pallor: Mild<br />
+                      Throat: Normal<br />
+                      • Sytemic Examination:<br />
+                      Alimentary system: Abdomen> Not distended, soft, diffuse tenderness, no organomegaly, normal BS </p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Diagnosis:</h4>
+                    <p>(1) Healthy infant</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Investigation Notes:</h4>
+                    <p>AFDS FASD FAD FSDFSDFASDFSDFASDFASDFASDFASDFASDFASd</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Assessments:</h4>
+                    <p>ASDFASDF ASDF ASDFA SDFASDFASDFDSFSDFSDFASDFSDF</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>R<sub>X</sub></h4>
+                    <p>• XINC 100 ML<br />
+                      &nbsp;ORAL-1/2 tsf 8 hourly After Meal 14 Day(s)</p>
+                    <p> • NAPA 250 MG SUPP<br />
+                      &nbsp;
+                      PER RECTAL-6 hourly After Meal As Needed </p>
+                    <p> • SECLO 20 MG CAP<br />
+                      &nbsp;1+0+1 Before Meal Continue </p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Follow Up/Advice</h4>
+                    <p>1. Take complete rest for 7 days.</p>
+                    <p>2. Do not drink too much.</p>
+                  </article>
+                  <article class="prescription_detail_left_name" style="margin-bottom:30px;">
+                    <h4>Investigations Advised:</h4>
+                    <p>(1) Complete Blood Count (CBC), (2) Creatinine, (3) USG of Lower Abdomen 4D</p>
+                  </article>
+                </div>
+              </div>
+              <div style="clear:both"></div>
+              <div class="pre_left_sideber">
+                <div class="prescription_detail_left">
+                  <article class="prescription_detail_left_name">
+                    <h4>Evening: 2:30 PM - 6:30 PM (Saturday to Thursday)</h4>
+                    <p>(PrinƟng Date: 09-09-2018</p>
+                  </article>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6" style="height:160px;"><div class="footer_Table">
+              <p><strong>Evening:</strong> 2:30 PM - 6:30 PM (Saturday to Thursday)<br />
+                Printing Date: 12-12-2017<br />
+              </p>
+            </div></td>
+        </tr>
+      </tfoot>
+    </table>
+    <!--end_prescription_top--> 
+    
+    <!--main_content--> 
+    
+  </div>
+</div>
+<!-- end printOption --> 
+
+
+
+<div id="alertMessage" class="alert alert-danger emptyMessage"> {{alertMessage}} </div>
+<div id="successMessage" class="alert alert-success emptyMessage"> {{successMessage}} </div>

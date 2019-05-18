@@ -1,0 +1,387 @@
+.drugTab{ padding-top: 0px; }
+
+.drug_header {
+	width: 100%;
+	z-index: 99;
+	background: #dde6eb !important;
+	color: #2A2E33 !important;
+	text-shadow: 0 1px 0 #FFFFFF;
+	box-shadow: 0 0px 6px 0 #322828 !important;
+	margin-right: 9px;
+	border-right: none !important;
+	padding-right: 9px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+th.font_weight{ font-weight:normal !important; padding-top:6px !important; padding-bottom:6px !important;}
+.btn_drug{ width:46px !important;}
+.padd_drud{ padding-left:2px; padding-right:2px;}
+.padd_drud select{width: 100%;
+    height: 30px;
+    font-size: 14px;
+    color: #555; border-radius:0px;
+    border: 1px solid #ccc; box-shadow:none;}
+	.padd_drud input{ height:30px;}
+	.padd_drud button{height:30px;}
+	.margin_tab{ margin-top:5px;}
+	.margin_tab hr{ width:100%; margin-top: 5px !important;
+    float: left;}
+/*=============================accordion css================================*/
+
+.display-block {
+  display: block !important;
+}
+
+.display-none {
+  display: none ;
+}
+
+.accordion-container {
+	position: relative;
+	width: 100%;
+	height: auto;
+	float: left;
+}
+.accordion-container > h2 {
+	text-align: center;
+	color: #fff;
+	padding-bottom: 5px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #ddd;
+}
+.set {
+	position: relative;
+	width: 100%;
+	height: auto;
+	float: left;
+	border-bottom: solid 1px #bac5cc;
+	border-top: 1px solid #fff;
+	text-shadow: 0 1px 0 #fff;
+}
+.set > .accor_div {
+	display: block !important;
+	padding: 3px 0px;
+	padding-left: 14px;
+	text-decoration: none;
+	color: #000;
+	border-bottom: 1px solid #ddd;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+	font-size: 14px;
+	cursor: pointer; font-weight:bold;
+}
+.set > .accor_div:hover{color: #00535f;background: #cce6f1;}
+.content ul li a:hover{color: #00535f; text-decoration: none;}
+.accor_div i {
+	float: left;margin-right: 5px;
+    top: 3px;
+    position: relative; font-weight:normal;    color: #2c0c65;
+}
+.accor_div .fa-plus2 {
+}
+.set > .accor_div label i {
+	float: left;
+	left: 7px;
+	color: #fff;
+	top: 5px;
+	position: relative;
+}
+.set > .accor_div.active {
+
+/*background-color:#6ea134;
+color: #fff;border-radius: 4px 4px 0px 0px;*/
+}
+.set > span.active {
+	background-color: #3399cc;
+	color: #0690b0;
+}
+.set > .accor_div.active i {
+	color: #43A047;
+}
+.content {
+	position: relative;
+    width: 96%;
+    height: auto;
+    background: hsl(200, 22%, 92%);
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 4px 4px;
+    display: none;
+    border-left: solid 3px #0690b0;
+    float: right;    
+    font-size: 15px;
+    font-weight: bold;
+}
+.content ul{ margin-bottom:0px;background: #dfedf3;}
+.content ul li span{ font-size:17px; margin-right:5px;}
+.content ul li a{ color:#333;}
+.content ul li{ padding: 3px 0px;width: 100%;border-bottom: solid 1px #bac5cc;font-size: 14px; color:#000;    position: relative;
+}
+    border-top: 1px solid #fff; padding-left:5%;} 
+	.content ul li:last-child{ border-bottom:0px;}
+.ckeckbtn2 {
+	width: 110px;
+	height: 29px;
+	line-height: 9px;
+	margin-top: -3px;
+	border-radius: 17px;
+	float: right;
+	background: #01a2ea;
+	margin-bottom: 6px;
+}
+.content p {
+	padding: 10px 15px;
+	margin: 0;
+	color: #333;
+}
+.tag_btn {
+	height: 25px;
+	line-height: 9px;
+	margin-top: 3px;
+	border-radius: 17px;
+	float: left;
+	margin-bottom: 5px;
+	background: #01a2ea;
+	margin-right: 10px;
+	color: #fff;
+	border: 3px solid #fff;
+	font-family: roboto;
+	box-shadow: 0px 0px 1px #000;
+}
+.span_other {
+	color: #09C;
+	font-weight: bold;
+}
+.serbtn {
+	height: 25px;
+	line-height: 9px;
+	float: left;
+	font-size: 16px;
+	background: #609128;
+	margin-right: 2px;
+	color: #fff;
+	border: 3px solid #fff;
+	font-family: roboto;
+	box-shadow: 0px 0px 1px #000;
+}
+.p_medical {
+	font-family: roboto;
+	width: 100%;
+	float: left;
+	margin: 0px;
+	color: #09C;
+	font-size: 16px;
+}
+
+.content ul li .btn_edit_seting{
+    background: #0d7ca9;padding: 0px 3px;	
+	
+}
+.content ul li .btn_close_seting {
+    background: #de5555;padding: 0px 3px;
+}
+.content ul li .btn_edit_area span {
+    font-size: 11px !important;
+    
+}
+/*=============================accordion css================================*/
+table.tableAlmoLeft input{ height: 24px !important; }
+table.tableAlmoLeft th{background: #e1f2f5; font-size: 14px;}
+table.tableAlmoLeft button{padding: 0px 10px;font-size: 14px;}
+textarea.textArea1{    height:72px !important;}
+textarea.textArea2{
+  height: 126px !important;
+}
+.tableAlmoLeft {
+    margin-top: 10px;
+}
+/*=============================on off css================================*/
+.toggle_switch_area {
+    width: 90px;
+    margin: auto;
+     float: left;
+    left: -26px;
+    position: relative;
+}
+.toggle-group2 {
+    position: relative;
+    height: 27px;
+    left: 20px;
+    width: 90px;
+    left: 30px;
+}
+.toggle-group2 input[type=checkbox] {
+  position: absolute;
+  left: 10px;
+}
+.toggle-group2 input[type=checkbox]:checked ~ .onoffswitch2 .onoffswitch2-label .onoffswitch2-inner {
+  margin-left: 0;
+}
+.toggle-group2 input[type=checkbox]:checked ~ .onoffswitch2 .onoffswitch2-label .onoffswitch2-switch {
+  right: 3px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+.toggle-group2 input[type=checkbox]:focus ~ .onoffswitch2 {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+.toggle-group2 label {
+  position: absolute;
+  cursor: pointer;
+  padding-left: 65px;
+ 
+  text-align: left;
+  line-height:35px;
+  width: 100%;
+  z-index: 1;
+  height: 24px;
+  font-weight: 200;
+}
+
+/* ON/OFF Switch */
+.onoffswitch2 {
+  position: relative;
+  width:90px;
+  display: inline-block;
+  font-size:16px;
+}
+.onoffswitch2 .onoffswitch2-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #e6e6e6;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  margin: 0;
+}
+.onoffswitch2 .onoffswitch2-inner {
+  width: 200%;
+  margin-left: -100%;
+  -webkit-transition: margin 0.15s ease-in-out;
+  -o-transition: margin 0.15s ease-in-out;
+  -moz-transition: margin 0.15s ease-in-out;
+  transition: margin 0.15s ease-in-out;
+}
+.onoffswitch2 .onoffswitch2-inner:before,
+.onoffswitch2 .onoffswitch2-inner:after {
+  float: left;
+  width: 50%;
+  height: 26px;
+  padding: 0;
+  line-height:27px;
+  font-size: 80%;
+  color: #ffffff;
+  font-weight: normal;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.onoffswitch2 .onoffswitch2-inner:before {
+  content: "Edit";
+  padding-left: 10px;
+  background-color: #930; font-weight:bold;
+  color: #ffffff;
+}
+.onoffswitch2 .onoffswitch2-inner:after {
+  content: "Enabled";
+  padding-right: 10px;
+  background-color:#46840b;
+  color: #fff;font-weight:bold;
+  text-align: right; font-size:12px;
+}
+.onoffswitch2 .onoffswitch2-switch {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  background: #ffffff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  bottom: 0;
+  right: 62px;
+  -webkit-transition: right 0.15s ease-in-out;
+  -o-transition: right 0.15s ease-in-out;
+  -moz-transition: right 0.15s ease-in-out;
+  transition: right 0.15s ease-in-out;
+}
+.formDrug {
+    height: 26px;
+    border: solid 1px #97c0dc;
+}
+.stickytrdrud td {
+    top: 27px;
+    position: sticky;
+    background: #fff;
+}
+/*=============================end on off css================================*/
+.btn_edit_area{ display:inline;position: absolute;
+    right: 3px;
+    top:3px; }
+#btn_edit{  width:80px;display: inline;}
+.new_group {
+       background: #398fbc;
+    border: solid 1px #28739a;
+    color: #fff;
+    padding: 1px;
+    width: 50%;
+    font-size: 14px;
+    left: 10%;
+    /* float: right; */
+    border-radius: 17px;
+    position: relative;
+}
+.btn_edit_seting{ color: #FFFFFF;
+    background: #3eaad6;
+    border: 0px; border-radius: 4px; margin-right:2px;
+    text-shadow: 0px 1px 0px #666; padding: 0px 4px; cursor: pointer; float:left;
+    font-size: 13px;}
+	.btn_close_seting{ color: #FFFFFF;float:left;
+  background: #ce7171;cursor: pointer;
+   border: 0px; border-radius: 4px;
+    text-shadow: 0px 1px 0px #000; padding: 0px 4px;
+    font-size: 13px;}
+	.btn_edit_area span{ font-size:13px !important; margin-right:0px !important;}
+	#btn_edit2 {
+    visibility: hidden;
+    width: 80px;
+    display: inline;
+}
+#new_btn{ display:none;}
+.btn_new{
+color: #FFFFFF;
+    background: #0690b0;
+    border: solid 1px #108aa7;
+    text-shadow: 0px 1px 0px #666;
+    padding: 0px 34px;
+    font-size: 16px;
+    border-radius: 13px;
+    float: right;
+    margin-right: 5px;
+   
+    position: relative;
+	}
+button.btn_add_new{ width:100%;}
+.drug_table_area2{ margin-bottom:6px;}
+.drug_table_area2 th{ padding:1px;}
+.drug_table_area2 td{ padding:1px;}
+.drug_table_area2 td input{ height:26px;}
+.form_style_drug{ padding-left:0px !important; padding-right:0px !important; }
+.text_area_drug2{border: 1px solid #398fbc; width:100%; height:90px !important; box-shadow:none; border-radius:0px; resize:none;}
+.well_drug{padding-left: 1px;
+margin-top: 9px;
+font-weight: 700; margin-bottom:4px; border-radius:0px; box-shadow:none;
+font-size: 15px;
+color: #333;
+background: #EEF6F9;
+padding: 4px;
+border: solid 1px #d7d7d7;}
+.drug_tr_input input{ width:100%; height:25px !important; box-shadow:none !important; border:solid 1px #d7d7d7; border-radius:0px;}
+.drug_td_btn button{ width:40px !important;float: left; margin-left:2px;}
+
+.color-red {
+   background-color: #FF0000;
+}

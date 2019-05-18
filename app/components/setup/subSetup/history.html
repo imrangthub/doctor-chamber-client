@@ -1,0 +1,130 @@
+
+<div class="main_table_content">
+    <!-- btnAllRow -->
+  <div class="btnAllRow">
+   <button  title="Add Finalization" data-toggle="modal" data-target="#addEditHistoryModal"  class=" btn btn-success addBtnSetup"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  <button  title="Edit" data-toggle="modal" data-target="#addEditHistoryModal"  class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+  <button  title="Delete" data-toggle="modal" data-target="#deleteHistoryModal"  class=" btn btn-danger addBtnSetup"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+  </div>
+  <!-- btnAllRow -->  
+
+  <div class="height_table_490 tableSetupOther">
+        <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" id="historyTable" class="table table-hover"></table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="addEditHistoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-md" role="document">
+  <div class="modal-content">
+    <div class="modal-header modal_header_custom">
+      <h5 class="modal-title" id="exampleModalLabel">Add History</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body allformContent">
+      
+<form>
+    <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-4 col-form-label">History Group</label>
+        <div class="col-sm-8">
+          <select ng-model="history.historyGroup.id" ng-init="history.historyGroup.id = 1"   class="form-control" convert-to-number>
+            <option value="0" class="" selected="selected"> --Select History Group-- </option>
+            <option ng-repeat="obj in historyGroupList" value="{{obj.id}}">{{obj.groupName}}</option> 
+          </select>
+        </div>
+      </div>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-4 col-form-label">Serial No.</label>
+  <div class="col-sm-8">
+    <input ng-model="history.historySerial" type="text" class="form-control" id="inputEmail3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">History Name</label>
+  <div class="col-sm-8">
+    <input ng-model="history.historyName" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">Place Holder</label>
+  <div class="col-sm-8">
+    <input ng-model="history.historyPlaceHolder" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">Input Type</label>
+  <div class="col-sm-8">
+    <select ng-model="history.inputType" class="form-control" convert-to-number>
+      <option value="0" class="" selected="selected"> --Select Input Type-- </option>
+      <option value="1" class="" selected="selected">Input field</option>
+       <option value="2" class="">Textarea</option>
+    </select>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-4 col-form-label">Name Show</label>
+  <div class="col-sm-8">
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="historyNameIsShowYes" ng-value="true" ng-init="history.isShowHeader= true" ng-model="history.isShowHeader" mdbInputDirective>
+          <label class="custom-control-label" for="historyNameIsShowYes"> Yes</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="historyNameIsShowNo" ng-value="false" ng-model="history.isShowHeader" mdbInputDirective>
+          <label class="custom-control-label" for="historyNameIsShowNo"> No</label>
+        </div>
+
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4 col-form-label text-right">Showing</div>
+  <div class="col-sm-8">
+    <div class="form-check">
+      <input ng-model="history.isEnable" class="form-check-input checkinput" type="checkbox" id="historyIsEnable"/>
+      <label class="form-check-label checkLabel checkLabel2" for="historyIsEnable">
+        Enable
+      </label>
+    </div>
+  </div>
+</div>
+
+</form>    
+</div>
+    <div class="modal-footer footerCustom">
+      <button ng-click="resetHistory()"  type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+      <button ng-click="addEditHistory()" data-dismiss="modal"   type="button" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+ <!-- delete modal -->
+<div class="modal fade" id="deleteHistoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body allformContent">
+        <h4 class="deleteh4">Do you want Delete?</h4>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="resetHistory()" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button  ng-click="deleteHistory()" data-dismiss="modal" type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){   
+      $("#historyTable").on('click', 'tr', function () {   
+        $('#historyTable tbody tr').removeClass("activetable");
+          $(this).addClass("activetable");
+      });
+    });
+</script>

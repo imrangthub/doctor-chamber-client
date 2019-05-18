@@ -1,0 +1,91 @@
+<script>
+//===================date_piker=====================
+$(function () {
+  $("#datepicker").datepicker({ 
+    format : 'dd/mm/yyyy',
+        autoclose: true, 
+        todayHighlight: true
+  }).datepicker('update', new Date());
+});
+
+</script>
+<div class="modal fade" id="followup">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content"> 
+      
+      <!-- Modal Header -->
+      <div class="modal-header modal_header_custom">
+        <h4 class="modal-title">{{modalHeader}}</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="table-responsive">
+          <div class="scrool_ber height_table_420 followUptable">
+            <table class="table table-bordered ">
+              <tbody>
+                <tr>
+                  <th style="width: 100px;">Come After</th>
+                  <td><input type="text" class="form-control" id="" placeholder=""></td>
+                   <td style="width: 100px;">
+                   <select class="form-control">
+                   <option value="Month">Month</option>
+					<option value="Day">Day</option>
+					<option value="Year">Year</option>
+                   </select>
+				  </td>
+                  <th>Later</th>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered ">
+              <tbody>
+                <tr>
+                  <th style="width: 100px;">Admission</th>
+                  <td colspan="3" class="text-center"><button type="button" class="btn btn-info">Today</button>
+                    <button type="button" class="btn btn-primary">Tomorrow</button>
+                    <button type="button" class="btn btn-success">After Tomorrow</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered ">
+              <tbody>
+                <tr>
+                  <th style="width: 100px;">After</th>
+                  <td colspan="2"><input type="text" class="form-control" id="" placeholder=""></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td colspan="2"> e.g.: 15d, 4w, 1y </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered ">
+              <tbody>
+                <tr>
+                  <th style="width: 100px;">On</th>
+                  <td>
+                  <div id="datepicker" class="date_picker_custom date_picker_customFollowup date" data-date-format="mm-dd-yyyy">
+                      <input class="form-control" type="text" readonly />
+                      <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span> </div>
+                      </td>
+                  <td style="width:30px;"><button type="button" class="btn btn-danger">
+                    C
+                    </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+
+<div class="main_table_content">
+    <!-- btnAllRow -->
+  <div class="btnAllRow">
+   <button  title="Add Chif Complain" data-toggle="modal" data-target="#addEditOnExaminationModal"  class=" btn btn-success addBtnSetup"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  <button  title="Edit" data-toggle="modal" data-target="#addEditOnExaminationModal"  class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+  <button  title="Delete" data-toggle="modal" data-target="#deleteOnExaminationModal"  class=" btn btn-danger addBtnSetup"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+  </div>
+  <!-- btnAllRow -->  
+
+  <div class="height_table_490 tableSetupOther">
+        <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" id="onExaminationTable" class="table table-hover"></table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="addEditOnExaminationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-md" role="document">
+  <div class="modal-content">
+    <div class="modal-header modal_header_custom">
+      <h5 class="modal-title" id="exampleModalLabel">Add Vital</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body allformContent">
+      
+<form>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-3 col-form-label">Serial No.</label>
+  <div class="col-sm-9">
+    <input ng-model="onExamination.vitalSerial" type="text" class="form-control" id="inputEmail3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-3 col-form-label">Name</label>
+  <div class="col-sm-9">
+    <input ng-model="onExamination.vitalName" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-3 col-form-label">Unit</label>
+  <div class="col-sm-9">
+    <input ng-model="onExamination.vitalUnit" type="text" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputPassword3" class="col-sm-3 col-form-label">Input Type</label>
+  <div class="col-sm-9">
+    <select ng-model="onExamination.inputType" class="form-control" convert-to-number>
+      <option value="0" class=""> --Select Input Type-- </option>
+      <option value="1" class="" selected="selected">Input field</option>
+       <option value="2" class="">Textarea</option>
+    </select>
+  </div>
+</div>
+<div ng-if="onExamination.inputType" class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Default Value</label>
+    <div class="col-sm-9">
+      <input ng-if="onExamination.inputType == 1"  ng-model="onExamination.defaultValue" type="text" class="form-control" id="inputDefaultValue" placeholder="">
+      <textarea ng-if="onExamination.inputType == 2"  ng-model="onExamination.defaultValue" class="mine-textarea" rows="2" cols="45" maxlength="250"> </textarea>
+    </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-3 col-form-label text-right">Showing</div>
+  <div class="col-sm-9">
+    <div class="form-check">
+      <input ng-model="onExamination.isEnable" class="form-check-input checkinput" type="checkbox" id="onExaminationIsEnable">
+      <label class="form-check-label checkLabel checkLabel2" for="onExaminationIsEnable">
+        Enable
+      </label>
+    </div>
+  </div>
+</div>
+
+</form>    
+</div>
+    <div class="modal-footer footerCustom">
+      <button ng-click="resetOnExamination()"  type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <button ng-click="addEditOnExamination()" data-dismiss="modal"   type="button" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+
+ <!-- delete modal -->
+<div class="modal fade" id="deleteOnExaminationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body allformContent">
+        <h4 class="deleteh4">Do you want Delete?</h4>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="resetOnExamination()" type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button  ng-click="deleteOnExamination()" data-dismiss="modal" type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){   
+      $("#onExaminationTable").on('click', 'tr', function () {   
+        $('#onExaminationTable tbody tr').removeClass("activetable");
+          $(this).addClass("activetable");
+      });
+    });
+</script>

@@ -1,0 +1,183 @@
+<link rel="stylesheet" type="text/css" href="./app/components/workList/style.css">
+<!-- start printOption -->
+<div class="printOption">
+<div class="container-fluid">
+  <div class="top_section_all">
+    <div class="main_table_content" id="workListMainTableContent">
+      <!-- Tab panes -->
+      <div class="tab-content tab_custom_area tab_custom_areaworklist"> 
+
+          <!-- start_top_list -->
+          <div class="top_list">
+            <div class="area_all_field">
+            <div id="topList">
+            
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox1">Morning Shift:<span>{{filteredPatientsbyMorningShift.length}}</span></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox1">Evening Shift:<span>{{filteredPatientsbyEveningShift.length}}</span></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox1">Fees paid:<span>{{filteredpatientsbyConsultation.length}}</span></label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <label class="form-check-label" for="inlineCheckbox4">Doctor: </label>
+          
+                  <input  type="text"  ng-model="worklistSearchDoctorName"
+                  ng-enter="typeaheadEnterPress()" uib-typeahead="doctor as doctor.doctorName for doctor in doctorList | filter:$viewValue | limitTo:10"
+                  typeahead-on-select="getSelectedDoctor($item, $model, $label)" typeahead-loading="loadingLocations"
+                  typeahead-no-results="noResults" class="form-control patientInput" ng-class="{'loading-typeadhad':loadingLocations}"
+                  id="inlineFormInputGroup" typeahead-template-url="app/components/typeaheadTemplate/nurse-worklist-doctor-search.html"
+                  placeholder="" autocomplete="off" />
+                </div>
+<!-- 
+                <div class="form-check form-check-inline dateTreatment">
+                    <label class="form-check-label" for="inlineCheckbox3">Form Date:&nbsp;</label>
+                    <div class="date_picker_custom date">
+                      <input class="form-control" name="worklistSearchParamsFromDate" datepicker="" ng-model="worklistSearchParamsFromDate" init-date="{{worklistSearchParamsFromDate}}"
+                        dp-format="dd-mm-yyyy" ng-change="setDateForSearchPatient()" type="text" autocomplete="off" />
+                      <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                     </div>
+                  </div>
+
+
+                  <div class="form-check form-check-inline dateTreatment">
+                    <label class="form-check-label" for="inlineCheckbox3">To Date:&nbsp;</label>
+                    <div class="date_picker_custom date">
+                      <input class="form-control" name="worklistSearchParamsToDate" datepicker="" ng-model="worklistSearchParamsToDate" init-date="{{worklistSearchParamsToDate}}"
+                        dp-format="dd-mm-yyyy" ng-change="setDateForSearchPatient()" type="text" autocomplete="off" />
+                      <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                     </div>
+                  </div> -->
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox3">From Date:&nbsp;</label>
+                <div class="date_picker_custom date">
+                  <input class="form-control" name="worklistSearchParamsFromDate" datepicker="" ng-model="worklistSearchParamsFromDate" init-date="{{worklistSearchParamsFromDate}}"
+                    dp-format="dd-mm-yyyy" ng-change="setDateForSearchPatient()" type="text" autocomplete="off" />
+                  <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                 </div>
+
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox3">&nbsp;To Date:&nbsp;</label>
+                <div class="date_picker_custom date">
+                  <input class="form-control" name="worklistSearchParamsToDate" datepicker="" ng-model="worklistSearchParamsToDate" init-date="{{worklistSearchParamsToDate}}"
+                    dp-format="dd-mm-yyyy" ng-change="setDateForSearchPatient()" type="text" autocomplete="off" />
+                  <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                 </div>
+
+              <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox3">&nbsp;Shift:&nbsp;</label>
+                <select class="form-control form-control-sm"  ng-model="worklistSearchParams.shiftdtlNo" ng-change="searchPatient()" convert-to-number>
+                    <option value="0" class="">All</option>  
+                    <option value="1" class="">Morning</option>
+                    <option value="2" class="">Evening</option>
+                </select>
+              </div>
+              
+            </div>
+            <div class="area_all_field">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="all" ng-model="consultationStatus" value="all" name="contlStatusRadioBtn">
+                <label class="all_bg form-check-label align_center" for="all">All <br/>({{patients.length}})</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="waiting" ng-model="consultationStatus" value="waiting" name="contlStatusRadioBtn">
+                <label class="waiting_bg form-check-label align_center" for="waiting">Waiting <br/>({{filteredpatientsbyWait.length}})</label>
+              </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="newPatient" ng-model="consultationStatus" value="newPatient" name="contlStatusRadioBtn">
+                  <label class="fresh_bg form-check-label align_center" for="newPatient">Fresh Visit <br/>({{filteredpatientsbyNewPatient.length}})</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="reportCheck" ng-model="consultationStatus" value="reportCheck" name="contlStatusRadioBtn">
+                  <label class="report_bg form-check-label align_center" for="reportCheck">Report Check <br/>({{filteredpatientsbyReportCheck.length}})</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="1stFollowUp" ng-model="consultationStatus" value="1stFollowUp" name="contlStatusRadioBtn">
+                  <label class="follow_up_bg form-check-label align_center" for="1stFollowUp">Follow Up <br/>({{filteredpatientsby1stFollowUp.length}})</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="complted" ng-model="consultationStatus" value="complted" name="contlStatusRadioBtn">
+                  <label class="done_bg form-check-label align_center" for="complted">Done <br/>({{filteredpatientsbyCompleted.length}})</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="appointed" ng-model="consultationStatus" value="appointed" name="contlStatusRadioBtn">
+                  <label class="appointed_bg form-check-label align_center" for="appointed">Appointed <br/>({{filteredpatientsbyAppointed.length}})</label>
+                </div>
+
+            </div>
+            
+            </div>
+           
+          </div>
+          <!-- start_top_list -->
+
+          <div class="clearfix"></div>
+          <div class="worklistArea">
+          <div class="table-responsive">
+           <div class="scrool_ber height_table_420">  
+             <table id="worklist" class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                  <th>SL#</th>
+                  <th>Hp No</th>
+                  <th>Patient's Name</th>
+                  <th>Age</th>
+                   <th>Gender</th>
+                  <th>Consultation Id</th>
+                  <th>Mobile</th>
+                   <th>Bill Date</th>
+                  <th style="width:66px;">Go To</th>
+                </tr>
+
+                <tr class="stickytr">
+                  <td></td>
+                  <td><input class="form-control" ng-model="searchParms.hospitalNo" type="text"></td>
+                  <td><input class="form-control" ng-model="searchParms.patientName" type="text"></td>
+                  <td><input class="form-control" ng-model="searchParms.age" type="text"placeholder=""></td>
+                  <td><input class="form-control" ng-model="searchParms.gender" type="text"placeholder=""></td>
+                  <td><input class="form-control" ng-model="searchParms.consultationId" type="text"placeholder=""></td>
+                  <td><input class="form-control" ng-model="searchParms.phoneNo" type="text"placeholder=""></td>
+                   <td><input class="form-control" type="text" placeholder=""></td>
+                   <td></td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- test -->
+                <tr ng-repeat="obj in patients | orderBy : 'slotSerial' | filter:searchParms"  ng-class="{ report: (obj.consultationType==4 && obj.consult_out==0 && obj.consultationId!=null), fresh : (obj.consultationType==1 && obj.consult_out==0 && obj.consultationId!=null), follow_up: (obj.consultationType==2 && obj.consult_out==0 && obj.consultationId!=null), done_new: (obj.consult_out==1 && obj.consultationId!=null), appointed: (obj.consultationId==null)}" ng-click="selectWorkListRow(obj)" ng-dblClick="startPrescription(obj)">
+
+                <!-- <tr ng-repeat="obj in patients | filter:searchParms" ng-class="{'done': patient.consult_out===1,'waiting':patient.consult_out===0}" ng-click="selectWorkListRow(obj)" ng-dblClick="workListDoubleClick(obj)"> -->
+                  <td>{{obj.slotSerial}} <span ng-if="obj.shiftdtlNo==1">(Morning)</span><span ng-if="obj.shiftdtlNo==2">(Evening)</span><span ng-if="obj.consultationNo>0">Fees paid</span></td>
+                  <td>{{obj.hospitalNo}}</td>
+                  <td>{{obj.patientName}}</td>
+                  <td>{{obj.age}}</td>
+                  <td>{{obj.gender}}</td>
+                  <td>{{obj.consultationId}}</td>
+                  <td>{{obj.phoneNo}}</td>
+                  <td>{{obj.consultationDtStr}}</td>
+                  <td>
+                    <button class="btn btn-primary btnsc" 
+                    ng-click="startPrescription(obj)"><i class="fa fa-user-md" aria-hidden="true"></i></button>
+                  </td>
+                </tr>            
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+        </div>
+        <!--end patientList--> 
+    
+      
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+</div>
+<!-- end printOption -->
+
+<div id="alertMessage" class="alert alert-danger emptyMessage"> {{alertMessage}} </div>
+<div id="successMessage" class="alert alert-success emptyMessage"> {{successMessage}} 

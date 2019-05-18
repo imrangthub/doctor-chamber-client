@@ -1,0 +1,371 @@
+<style type="text/css">
+.otherContent #cke_1_contents {
+	height: 243px !important;
+}
+div#cke_709_contents {
+	height: 243px !important;
+}
+.cke_contents {
+	height: 243px !important;
+}
+.cke_inner {
+	height: 312px;
+}
+.header {
+	display: none;
+}
+button.navMenu {
+	background: #009688;
+	color: #fff;
+	width: 33px;
+	height: 32px;
+	font-size: 21px;
+	margin-top: 12px;
+	border: 1px solid #017d72;
+	border-radius: 5px;
+	font-weight: normal !important;
+	cursor: pointer;
+}
+</style>
+
+<!-- start printOption -->
+<div class="printOption">
+  <div class="container-fluid">
+    <div class="top_section_all">
+      <div class="row padding_none">
+        <div class="col-md-9 col-sm-12 color_grid_one">
+          <button class="navMenu" title="Menu"><i class="fa fa-bars" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-info searchBtn"><i class="fa fa-search" aria-hidden="true"></i>
+          <input type="checkbox" ng-model="myPannel">
+          </button>
+          <div class="patient_all_info_hom2 patientTopWidth">
+            <div class="table-responsive">
+              <table class="table table-borderless tableHeight"  ng-hide="myPannel">
+                <tbody>
+                  <tr>
+                    <th style="width:66px;">Patient ID:</th>
+                    <td style="width:170px;">{{patient.hospitalNo}}</td>
+                    <th style="width:96px;">Patient Name:</th>
+                    <td style="width:330px;">{{patient.patientName}}</td>
+                    <th style="width:36px;">Age:</th>
+                    <td>{{patient.age}}</td>
+                    <th style="width:46px;">Gender:</th>
+                    <td>{{patient.gender}}</td>
+                  </tr>
+                  <tr>
+                    <th style="width:66px;">Mobile No:</th>
+                    <td style="width:170px;">{{patient.phoneNo}}</td>
+                    <th style="width:96px;">Cons. ID:</th>
+                    <td style="width:330px;">{{patient.consultationId}}</td>
+                    <th style="width:96px;">Marital Status:</th>
+                    <td colspan="3">{{patient.maritalStatus}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
+              <table class="table table-borderless tableHeight2" ng-show="myPannel">
+                <tbody>
+                  <tr>
+                    <th rowspan="2" style="width:66px;">Hospital ID:</th>
+                    <td rowspan="2" style="width:170px; vertical-align: middle;"><input type="text" class="form-control"></td>
+                    <th rowspan="2" style="width:64px;">Patient ID:</th>
+                    <td rowspan="2" style="width:220px; vertical-align: middle;"><input type="text" class="form-control"></td>
+                    <th rowspan="2" style="width:36px;">Consultant :</th>
+                    <td rowspan="2" style="vertical-align: middle;"><input type="text" class="form-control"></td>
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 color_grid_three">
+          <div class="btn_all_top">
+            <div class="print_top2 text-center">
+              <input class="form-check-input detailsp detailsp2" type="checkbox" id="checht">
+              <label class="form-check-label" for="checht"> Details Prescription </label>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-success print_btn2" ng-click="onSave()"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+
+              <button ng-click="onPrint($event);" type="button" class="btn btn-primary print_btn2 clicktoggle show1"> <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+              <button onClick="print2();onPrint($event)" type="button" class="btn btn-primary print_btn2 clicktoggle show2"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+              <a href="#/worklist" title="Work list">
+                <button type="button" class="btn btn-warning workListBtn">
+                <i class="fa fa-th-list" aria-hidden="true"></i>
+             <!--      <i class="fa fa-file-word-o" aria-hidden="true"></i> -->
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_table_content" id="homeOneMainTableContent">        
+        <!-- Tab panes -->
+        <div class="tab-content otherContent"> 
+          
+          <!--start clinicalHis-->
+          <div>
+            <div class="row marginRightD">
+              <div class="col-md-6 col-sm-12">
+                <h5 class="titleh5 visitTitle">
+                Visit Notes:
+                <did class="onOffvisit" >
+                  <div class="printerInner">
+                    <span><i class="fa fa-print"></i></span>
+                    <input type="checkbox" ng-model="isPrintableVisit"
+					    ng-checked="isPrintableVisit"
+					    ng-true-value="1"
+					    ng-false-value="0"
+					    ng-change="isPrintableReport(isPrintableVisit, 'VisitNote','5')"
+                        />
+                  </div>
+                </did>
+                </h5>
+                <div class="clearfix"></div>
+                <textarea  name="editor" ck-editor ng-model="note.prescritionData" ></textarea>
+              </div>
+              <div class="col-md-3 col-sm-12 allBorderV">
+                <table class="table table-bordered dith">
+                  <thead>
+                    <tr ng-repeat="setupHead in setupHeadList | filter : {dataType : 11} : true">
+                      <th style="width:114px;">{{setupHead.headName}}:</th>
+                      <th style="width:154px; background: #e1f2f5 !important;border: 0px !important;"></th>
+                      <td style="width:50px;position: relative;background: #e1f2f5 !important;border: 0px !important;">
+                        <div class="printerInner printerInner2">
+                          <span><i class="fa fa-print"></i></span>
+                           <input type="checkbox" ng-model="isPrintable"
+              ng-checked="isPrintable"
+              ng-true-value="1"
+              ng-false-value="0"
+              ng-change="isPrintableReport(isPrintable, 'Vitals','11')"
+                        />
+                        </div>
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                
+                <ul class="list-inline list-group vitalsComponent scrool_ber height_table_140">
+                  <li ng-repeat="vital in vitalData | orderBy: 'vitalSerial' ">
+                    <p>{{vital.vitalName}}</p>
+                    <span>                  
+                      <input type="text" placeholder="{{vital.vitalUnit}}" 
+                      ng-model="vital.vitalResult">
+                    </span> 
+                  </li>
+                </ul>
+                <table class="table table-bordered dith">
+                  <thead>
+                    <tr class="bgTr" ng-repeat="setupHead in setupHeadList | filter : {dataType : 6} : true">
+                      <th style="border: 0px !important;">{{setupHead.headName}}:</th>
+                      <th style="border: 0px !important;position: relative;"> 
+                        <new-search-component 
+                          place="Type diagnosis..." 
+                          data="diagnosisData" 
+                          head-type = setupHead.id
+                          bind-type = 6
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "referenceId"
+                          display-property="diagnosisName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="diagnosisList"> 
+                        </new-search-component>
+                      </th>
+                        </th>
+                      <td style="width:50px;position: relative;">
+                        <div class="printerInner printerInner2">
+                          <span><i class="fa fa-print"></i></span>
+                          <input type="checkbox" ng-model="isPrintable"
+						    ng-checked="isPrintable"
+						    ng-true-value="1"
+						    ng-false-value="0"
+						    ng-change="isPrintableReport(isPrintable, 'Diagnosis','6')"
+	                        />
+                        </div>
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                <ul class="list-inline list-group chief_com scrool_ber height_table_140">
+                  <li ng-repeat="diagnosis in diagnosisList" ng-if="!diagnosis.isDeleted">
+                    <p>
+                      <input class="form-control" type="text" ng-model="diagnosis.prescritionData" >
+                    </p>
+                    <span ng-click="onDelete($index,'diagnosisList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-sm-12 allBorderV">
+                <table class="table table-bordered dith">
+                  <thead>
+                    <tr class="bgTr" ng-repeat="setupHead in setupHeadList | filter : {dataType : 1} : true">
+                      <th style="border: 0px !important;">{{setupHead.headName}}:</th>
+                      <th style="border: 0px !important;"> 
+                        <new-search-component 
+                          place="Type test name..." 
+                          data="pathInvestigationData" 
+                          head-type = setupHead.id
+                          bind-type = 1
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = "0"
+                          bind-item-no-property = "referenceId"
+                          display-property="itemName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="pathInvestigationList"> 
+                        </new-search-component>
+                      </th>
+                      <td>
+                      <div class="toolTipsArea">
+                        <i class="fa fa-hospital-o hospitalIcon" aria-hidden="true" ng-click="onSelectNote('phatologyNoteShow')"></i>
+                      	<span>Pathology Note</span>
+                      	</div>
+                      </td>
+                      <td style="width:50px;position: relative;">
+                        <div class="printerInner printerInner2">
+                          <span><i class="fa fa-print"></i></span>
+                              <input type="checkbox" ng-model="isPrintable"
+						    ng-checked="isPrintable"
+						    ng-true-value="1"
+						    ng-false-value="0"
+						    ng-change="isPrintableReport(isPrintable, 'Pathology','1')"
+	                        />
+                        </div>
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                <div ng-show="phatologyNoteShow">
+                  <textarea placeholder="Type Pathology Note." ng-model="phatologyNote.notesData" class="form-control typeTexarea"></textarea>
+                </div>
+                <ul class="list-inline list-group chief_com scrool_ber height_table_140" ng-hide="phatologyNoteShow">
+                  <li ng-repeat="pathInvestigation in pathInvestigationList" ng-if="!pathInvestigation.isDeleted">
+                    <p>
+                      <input class="form-control" type="text" ng-model="pathInvestigation.prescritionData">
+                    </p>
+                    <span ng-click="onDelete($index,'pathInvestigationList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+                </ul>
+                <table class="table table-bordered dith">
+                  <thead>
+                    <tr class="bgTr" ng-repeat="setupHead in setupHeadList | filter : {dataType : 2} : true">
+                      <th style="border: 0px !important;">{{setupHead.headName}}:</th>
+                      <th style="border: 0px !important;"> 
+                        <new-search-component
+                          place="Type test name..." 
+                          data="radioInvestigationData" 
+                          head-type = setupHead.id
+                          bind-type = 2
+                          bind-property= "prescritionData" 
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = "0"
+                          bind-item-no-property = "referenceId"
+                          display-property="itemName" 
+                          on-select="onSelect(obj, listName)"
+                          list-name="radioInvestigationList"> 
+                        </new-search-component>
+                      </th>
+                      <td>
+                        <div class="toolTipsArea">
+                        <i class="fa fa-hospital-o hospitalIcon" aria-hidden="true" ng-click="onSelectNote('radiologyNoteShow')"></i>
+                      	<span>Radiology Note</span>
+                      	</div>
+                      </td>
+
+                      <td style="width:50px; position: relative;">
+                        <div class="printerInner printerInner2">
+                          <span><i class="fa fa-print"></i></span>
+                              <input type="checkbox" ng-model="isPrintable"
+						    ng-checked="isPrintable"
+						    ng-true-value="1"
+						    ng-false-value="0"
+						    ng-change="isPrintableReport(isPrintable, 'Radiology','2')"
+	                        />
+                        </div>
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                <div ng-show="radiologyNoteShow">
+                  <textarea placeholder="Type Radiology Note." ng-model="radiologyNote.notesData" class="form-control typeTexarea"></textarea>
+                </div>
+                <ul class="list-inline list-group chief_com scrool_ber height_table_140" ng-hide="radiologyNoteShow">
+                  <li ng-repeat="radioInvestigation in radioInvestigationList" ng-if="!radioInvestigation.isDeleted">
+                    <p>
+                      <input class="form-control" type="text" ng-model="radioInvestigation.prescritionData">
+                    </p>
+                    <span ng-click="onDelete($index,'radioInvestigationList')"> <i title="Remove" class="fa fa-minus-square-o icon_marginp"></i> </span> </li>
+                </ul>
+              </div>
+            </div>
+            <hr class="hrborder2">
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="investigation_table investigation_tableDrug tableDrugInvestigation">
+                  <div class="table-responsive">
+                    <div class="scrool_ber height_table_244">
+                      <medicine-component 
+                          place="Type brand name..."
+                          data="medicineData"
+                          consider-generic="true"
+                          bind-type = 4
+                          bind-type-property= "prescritionDataType"                    
+                          item-no-property = ""
+                          bind-item-no-property = "itemNo"
+                          display-property="'brandName'"
+                          on-select="onSelect(obj, listName)"                         
+                          > 
+                      </medicine-component>
+                      <table class="tabletdPadding  tabledrug2 table table-bordered table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th style="width:38px;"></th>
+                            <th style="width:130px;">Form</th>
+                            <th>Brand Name</th>
+                            <th style="width:150px;">Strength</th>
+                            <th style="width:180px;">Dose</th>
+                            <th style="width:250px;">Relation With Meal</th>
+                            <th style="width:150px;">Duration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="medicine in medicineList" ng-if="!medicine.isDeleted">
+                            <td><button class="btnRemove" ng-click="onDelete($index,'medicineList')"> <i class="fa fa-minus-square-o" aria-hidden="true"></i> </button></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.form"></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.brandName"></td>
+                            <td><input class="form-control borderNone" type="text" ng-model="medicine.strength"></td>
+                            <td><input class="form-control borderNone" value="1+1+1" ng-model="medicine.dosage"></td>
+                            <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.relationWithMeal"></td>
+                            <td><input class="form-control borderNone" type="text" name="" ng-model="medicine.duration"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end clinicalHis--> 
+          
+        </div>
+      </div>
+    </div>
+    <!--end_Medication--> 
+    
+  </div>
+  <!-- end Tab panes --> 
+  
+</div>
+</div>
+</div>
+
+<!-- print prescription --> 
+</div>
+
+<!-- end printOption -->
+
+<div id="alertMessage" class="alert alert-danger emptyMessage"> {{alertMessage}} </div>
+<div id="successMessage" class="alert alert-success emptyMessage"> {{successMessage}} </div>

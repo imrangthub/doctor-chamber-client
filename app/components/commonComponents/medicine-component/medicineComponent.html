@@ -1,0 +1,85 @@
+          <div class="dropDown_medication dropDown_medication2">
+            <input class="form-control drop_value drop_valueInput" 
+            type="text"  
+            placeholder="{{$ctrl.place}}" 
+            ng-change="$ctrl.search_start()" 
+            ng-model="$ctrl.search_term" 
+            ng-keydown="$ctrl.keyDown($event)"
+            >
+            
+            <did class="onOffvisit onOffvisit2" >
+              <div class="printerInner">
+               <!--    <input class="medicinePint" type="checkbox" ng-model="isPrintable"
+                ng-checked="isPrintable"
+                ng-true-value="1"
+                ng-false-value="0"
+                ng-change="$ctrl.isPrintableReport(isPrintable, 'Medicine','4')"> -->
+              </div>
+            </div>     
+
+        <!--search_item_slider-->
+          <div class="drop_value_slidePosition" ng-if="$ctrl.dataFound"> 
+              <span class="span_close"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+              <table class="tableTopDrug">
+                  <tr>
+                      <th>Group:</th>
+                      <td style="width: 400px;"><select class="form-control" id="exampleFormControlSelect1">
+                          <option>Analgesic/antipyretic</option>
+                        </select></td>
+                      <th>Generic:</th>
+                      <td style="width: 310px;"><select class="form-control" id="exampleFormControlSelect1">
+                          <option>Paracetamol</option>
+                        </select></td>
+                      <td class="icon_td"><button class="hoverTitle btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i><span>Show Info</span></button></td>
+                      <td class="icon_td"><button class="hoverTitle btn btn-info"><i class="fa fa-step-backward" aria-hidden="true"></i><span>Find Previous</span></button></td>
+                      <td class="icon_td"><button class="hoverTitle btn btn-info"><i class="fa fa-step-forward" aria-hidden="true"></i><span>Find Next</span></button></td>
+                      <td class="icon_td"><button class="hoverTitle btn btn-primary"><i class="fa fa-check-square" aria-hidden="true"></i><span>Accept</span></button></td>
+                  </tr>
+              </table>
+              <div class="drop_value_slide_iiner scrool_ber height_table_180">
+                <div class="drugTable">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-12 tableDrugcol">
+                      <div class="scrool_ber height_table_180">
+                        <table class="table table-bordered  table-sm">
+                          <thead>
+                            <tr>
+                              <!-- <th style="width:24px;"></th> -->
+                              <th style="width: 230px;">Brand</th>
+                              <th style="width: 230px;">Manufacturer</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="option in $ctrl.matchingOptions" ng-click="$ctrl.selectBrand(option)" ng-class="{selected: $ctrl.isBrandSelected(option)}">
+                             <!--  <td><input type="checkbox" name=""></td> -->
+                              <td>{{option.brandName}}</td>
+                              <td>{{option.preferred}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                  <div class="col-md-4 col-sm-12 tableDrugcol">
+                      <div class="scrool_ber height_table_180">
+                        <table class="table table-bordered  table-sm">
+                          <thead>
+                            <tr>
+                              <th>Formulation</th>
+                              <th>Strength</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="formStrength in $ctrl.formStrengthList" ng-click="$ctrl.onSelect({obj : formStrength, listName : 'medicineList'});$ctrl.onSelectClose();" ng-class="{selected: $ctrl.isStrengthSelected(formStrength)}">
+                              <td>{{formStrength.form}}</td>
+                              <td>{{formStrength.strength}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="clearfix"></div>
+  </div>
+  <!--end_search_item_slider--> 

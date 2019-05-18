@@ -1,0 +1,31 @@
+<input type="text" class="form-control" 
+placeholder="{{$ctrl.place}}" 
+ng-change="$ctrl.search_start()" 
+ng-model="$ctrl.search_term" 
+ng-keydown="$ctrl.keyDown($event)"
+>
+<div class="table-responsive" ng-if="$ctrl.dataFound">
+  <div class="scrool_ber allTypeSelect">
+    <div class="drop_value_slide_iiner scrool_ber height_table_150">
+      <div class="drugTable">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 tableDrugcol">
+            <div class="scrool_ber height_table_120">
+              <table class="table table-bordered  table-sm">
+                <tbody>
+                  <tr ng-repeat="data in $ctrl.matchingData" 
+                  ng-click="$ctrl.onSelect({obj : data, listName : $ctrl.listName});$ctrl.onSelectClose();" 
+                  ng-class="{selected: $ctrl.isSelected(data)}">
+                    <td>{{data[$ctrl.bindProperty]}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!--end_search_item_slider--> 
+</div>

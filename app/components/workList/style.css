@@ -1,0 +1,93 @@
+.morning_worklist {
+    background-color: #fcf6db !important;
+}
+
+.evening_worklist {
+    background-color: #dbebe5 !important;
+}
+
+.align_center {
+    text-align: center;
+}
+.all_bg{
+    background-color: #085997;
+    padding: 3px;
+    border: 1px solid #024274; color: #fff;   
+}
+
+.waiting_bg {
+    background-color: #e0eef9;
+    padding: 3px;
+    border: 1px solid #bccedc;
+}
+
+label.done_bg {
+    padding: 3px;
+    background: #c90202;
+    border: solid 1px #410101;
+    color: #fff;
+}
+
+.done_new {
+    background-color : #c90202;
+    color: #fff;    
+}
+
+label.follow_up_bg {
+    padding: 3px;
+    background: #f4b912;
+    border: solid 1px #624901;
+    color: #fff;
+}
+
+.follow_up {
+    background-color : #f4b912;
+    color: #fff;
+}
+
+label.fresh_bg {
+    padding: 3px;
+    background: #02950d;
+    border: solid 1px #025808;
+    color: #fff;
+}
+
+.fresh {
+    background-color : #02950d;
+    color: #fff;
+}
+
+label.report_bg {
+    padding: 3px;
+    background: #d9f8db;
+    border: solid 1px #025808;
+}
+
+.report {
+    background-color : #d9f8db;
+    color: #000;
+}
+
+label.appointed_bg {
+    padding: 3px;
+    background: yellow;
+    border: solid 1px #025808;
+    color: #dd;
+}
+
+.appointed {
+    background-color : yellow;
+    color: #dd;
+}
+
+.serialed_bg{
+    background-color: #027750;
+    padding: 3px;
+    border: 1px solid #015036; color: #fff; 
+}
+li.top_space {
+    top: 5px;
+    position: relative;
+}
+
+

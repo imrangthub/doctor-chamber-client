@@ -1,0 +1,262 @@
+<div ng-include="'./app/components/drug/modal/deleteDrugGroup.html'"></div>
+<div ng-include="'./app/components/drug/modal/addEditDrugGroup.html'"></div>
+<div ng-include="'./app/components/drug/modal/editDurgModal.html'"></div>
+<div ng-include="'./app/components/drug/modal/deleteDrug.html'"></div>
+<div ng-include="'./app/components/drug/modal/addEditGenericModal.html'"></div>
+<div ng-include="'./app/components/drug/modal/deleteGenericModal.html'"></div>
+<div class="container-fluid">
+<!--row-->
+  <div class="row">
+    <!--col-md-2-->
+    <div class="col-md-2 col-sm-12 paddingLRNone"> 
+      <!--tab_learn-->
+      <div class="tab_learn2 drugTab padding_none" role="tablist" id="ler">
+      <!--drug_header-->
+        <div class="drug_header">
+          <div class="toggle_switch_area">
+            <div class="toggle-group2">
+              <input type="checkbox" ng-click="toggleDrugGroupEditable()" name="on-off-switch2"  id="on-off-switch2" checked="" tabindex="1" ng-model="myPannel">
+              <label for="on-off-switch2"> <span class="aural2"></span> </label>
+              <div class="onoffswitch2 pull-right" aria-hidden="true">
+                <div class="onoffswitch2-label">
+                  <div class="onoffswitch2-inner"></div>
+                  <div class="onoffswitch2-switch"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button data-toggle="modal" data-target="#addEditGroupModal" class="btn new_group"> <i class="fa fa-plus" aria-hidden="true"></i> New Group </button>
+        </div>
+        <!--end drug_header-->
+        
+        
+        <!--accordion-container-->
+        <div class="accordion-container accordion-container-for-drug-setup">
+          <div class="hei_562 scrool_ber">
+
+            <div class="set"  ng-repeat="obj in drugGroupList">
+              <div ng-click="selectAccordDrugGroup(obj); accordDrugGroupClick(obj, $event)" class="accor_div"><i class="fa fa-plus-square-o fa-plus2" aria-hidden="true"></i>{{obj.groupName}}</div>
+              <!--start_btn_edit_area-->
+              <div class="btn_edit_area">
+                <div id="btn_edit" ng-show="myPannel">
+                  <button ng-click="editDrugGroup(obj)" data-toggle="modal" data-target="#addEditGroupModal" type="button" class="btn_edit_seting"><span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+                  <button ng-click="selectAccordDrugGroup(obj)" data-toggle="modal" data-target="#deleteDrugGroupModal" type="button" class="btn_close_seting"><span class="fa fa-times" aria-hidden="true"></span></button>
+                </div>
+              </div>      
+              <!--end_btn_edit_area-->
+              <div class="content">
+                <ul class="list-group list-inline">
+
+                  <li ng-repeat="obj in genericList" ng-click="selectGeneric(obj)"><span class="fa fa-angle-right" aria-hidden="true"></span> <a href="">{{obj.genericName}} </a> 
+                    <!--start_btn_edit_area-->
+                    <div class="btn_edit_area">
+                      <div ng-show="myPannel">
+                        <button data-toggle="modal" data-target="#addEditGenericModal" type="button" class="btn_edit_seting"><span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+                        <button data-toggle="modal" data-target="#deleteGenericModal" type="button" class="btn_close_seting"><span class="fa fa-times" aria-hidden="true"></span></button>
+                      </div>
+                    </div>
+                    <!--end_btn_edit_area--> 
+                  </li>
+
+                  <li  ng-show="myPannel">
+                    <button data-toggle="modal" data-target="#addEditGenericModal" class="btn btn_new"><i class="fa fa-plus" aria-hidden="true"></i> New</button>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!--end accordion-container-->
+      </div>
+      <!--tab_learn--> 
+    </div>
+    <!--end col-md-2-->
+    <!--col-md-10-->
+    <div class="col-md-10 col-sm-12 paddingLRNone">
+      <div class="tab-content content_area">
+        <div class="main_table_content">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-sm setupAll">
+              <tbody>
+                <tr>
+                  <td style="width:350px;"><input ng-model="drugListFilterParams.brandName" class="form-control" type="text" placeholder="Search By Brand Name..."></td>
+                  <td style="width:350px;">
+                      <input type="text" ng-keyup="$event.keyCode == 13 && selecteGenericGlobally($item, $model, $label)"
+                      ng-model="selectedGenericGlobally" uib-typeahead="globalGeneric as globalGeneric.genericName for globalGeneric in globalGenericList | filter:$viewValue | limitTo:8"
+                      typeahead-on-select="selecteGenericGlobally($item, $model, $label)" class="form-control"
+                      placeholder="Search By Generic Name..." />
+                 </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h6 class="clickH6">Click on a generic to show options...</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr ng-if="selectedGeneric.id>0">
+                  <th style="width:100px;"><strong>{{selectedDrugGroup.groupName}}</strong> /  {{generic.genericName}} </th>
+                  <th><button data-toggle="modal" data-target="#addEditGenericModal" title="Edit" type="button" class="btn btn-primary btnEdit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-sm setupAll">
+              <tbody>
+                <tr>
+                  <td style="width:200px;"><input ng-model="drug.brandName" class="form-control" type="text" placeholder="Advice in Eng"></td>
+                  <td style="width:200px;"><select ng-model="drug.form"  class="form-control">
+                      <option value="" class="" selected="selected"> --Select Form-- </option>
+                      <option label="Form" value="object:712">Form</option>
+                      <option label="Cap." value="object:713">Cap.</option>
+                      <option label="Cozycap" value="object:714">Cozycap</option>
+                      <option label="Cream" value="object:715">Cream</option>
+                      <option label="Drop" value="object:716">Drop</option>
+                      <option label="Emulsion" value="object:717">Emulsion</option>
+                      <option label="Evohaler" value="object:718">Evohaler</option>
+                      <option label="Gel" value="object:719">Gel</option>
+                      <option label="Infusion" value="object:720">Infusion</option>
+                      <option label="Inhaler" value="object:721">Inhaler</option>
+                      <option label="Inj." value="object:722">Inj.</option>
+                      <option label="Liquid" value="object:723">Liquid</option>
+                      <option label="Lotion" value="object:724">Lotion</option>
+                      <option label="Lozenge" value="object:725">Lozenge</option>
+                      <option label="Ointment" value="object:726">Ointment</option>
+                      <option label="Paste" value="object:727">Paste</option>
+                      <option label="Patch" value="object:728">Patch</option>
+                      <option label="Pessary" value="object:729">Pessary</option>
+                      <option label="Powder" value="object:730">Powder</option>
+                      <option label="Rotahaler" value="object:731">Rotahaler</option>
+                      <option label="Sachet" value="object:732">Sachet</option>
+                      <option label="Solution" value="object:733">Solution</option>
+                      <option label="Spray" value="object:734">Spray</option>
+                      <option label="Strip" value="object:735">Strip</option>
+                      <option label="Suppository" value="object:736">Suppository</option>
+                      <option label="Susp." value="object:737">Susp.</option>
+                      <option label="Syrup" value="object:738">Syrup</option>
+                      <option label="Tab." value="object:739">Tab.</option>
+                      <option label="Oral paste" value="object:740">Oral paste</option>
+                      <option label="Emulgel" value="object:741">Emulgel</option>
+                      <option label="Licap" value="object:742">Licap</option>
+                      <option label="Accuhaler" value="object:743">Accuhaler</option>
+                      <option label="Dose counter" value="object:744">Dose counter</option>
+                      <option label="Breezehaler" value="object:745">Breezehaler</option>
+                      <option label="Convicap" value="object:746">Convicap</option>
+                      <option label="Tab." value="object:747">Tab.</option>
+                      <option label="Tab." value="object:748">Tab.</option>
+                    </select></td>
+                  <td style="width:240px;"><select ng-model="drug.manufacturer.id"  class="form-control">
+                      <option value="" class="" selected="selected"> --Select Manufacture-- </option>
+                      <option ng-repeat="obj in manufacturerList" value="{{obj.id}}">{{obj.manufactName}}</option> 
+                    </select></td>
+                  <td style="width:200px;"><input ng-model="drug.strength" type="text" placeholder="Strength"></td>
+                  <td style="width:200px;"><input ng-model="drug.price"  class="form-control" type="text" placeholder="Price"></td>
+                  <td style="width:60px;"><button ng-click="addUpdateDrug()"  class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>{{drug.id ? ' Update' : ' Add'}}</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr class="hrB">
+          <div class="main_table_content maincontent2">
+            <div class="table-responsive">
+              <div class="scrool_ber height_table_380">
+                <table class="table table-bordered table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th style="width:140px;">Index</th>
+                      <th>Brand</th>
+                      <th style="width:180px;">Form</th>
+                      <th>Manufacturer</th>
+                      <th>Strength</th>
+                      <th style="width:120px;">Price(৳)</th>
+                      <th style="width:90px;">Action</th>
+                    </tr>
+                    <tr class="stickytrdrud">
+                      <td><input   type="text" class="form-control formDrug"></td>
+                      <td><input ng-model="drugListFilterParams.brandName" type="text" class="form-control formDrug"></td>
+                      <td><input ng-model="drugListFilterParams.form" type="text" class="form-control formDrug"></td>
+                      <td><input ng-model="drugListFilterParams.manufacturer.manufactName" type="text" class="form-control formDrug"></td>
+                      <td><input ng-model="drugListFilterParams.strength"  type="text" class="form-control formDrug"></td>
+                      <td><input ng-model="drugListFilterParams.price"  type="text" class="form-control formDrug"></td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="obj in drugList | filter: drugListFilterParams">
+                      <td>{{$index + 1}}</td>
+                      <td>{{obj.brandName}}</td>
+                      <td>
+                        <select ng-model="obj.form"  class="form-control" disabled="true" selected="selected">
+                          <option label="Form" value="object:712">Form</option>
+                          <option label="Cap." value="object:713">Cap.</option>
+                          <option label="Cozycap" value="object:714">Cozycap</option>
+                          <option label="Cream" value="object:715">Cream</option>
+                          <option label="Drop" value="object:716">Drop</option>
+                          <option label="Emulsion" value="object:717">Emulsion</option>
+                          <option label="Evohaler" value="object:718">Evohaler</option>
+                          <option label="Gel" value="object:719">Gel</option>
+                          <option label="Infusion" value="object:720">Infusion</option>
+                          <option label="Inhaler" value="object:721">Inhaler</option>
+                          <option label="Inj." value="object:722">Inj.</option>
+                          <option label="Liquid" value="object:723">Liquid</option>
+                          <option label="Lotion" value="object:724">Lotion</option>
+                          <option label="Lozenge" value="object:725">Lozenge</option>
+                          <option label="Ointment" value="object:726">Ointment</option>
+                          <option label="Paste" value="object:727">Paste</option>
+                          <option label="Patch" value="object:728">Patch</option>
+                          <option label="Pessary" value="object:729">Pessary</option>
+                          <option label="Powder" value="object:730">Powder</option>
+                          <option label="Rotahaler" value="object:731">Rotahaler</option>
+                          <option label="Sachet" value="object:732">Sachet</option>
+                          <option label="Solution" value="object:733">Solution</option>
+                          <option label="Spray" value="object:734">Spray</option>
+                          <option label="Strip" value="object:735">Strip</option>
+                          <option label="Suppository" value="object:736">Suppository</option>
+                          <option label="Susp." value="object:737">Susp.</option>
+                          <option label="Syrup" value="object:738">Syrup</option>
+                          <option label="Tab." value="object:739">Tab.</option>
+                          <option label="Oral paste" value="object:740">Oral paste</option>
+                          <option label="Emulgel" value="object:741">Emulgel</option>
+                          <option label="Licap" value="object:742">Licap</option>
+                          <option label="Accuhaler" value="object:743">Accuhaler</option>
+                          <option label="Dose counter" value="object:744">Dose counter</option>
+                          <option label="Breezehaler" value="object:745">Breezehaler</option>
+                          <option label="Convicap" value="object:746">Convicap</option>
+                          <option label="Tab." value="object:747">Tab.</option>
+                          <option label="Tab." value="object:748">Tab.</option>
+                        </select>
+                      </td>
+                      <td>
+                      <select  class="form-control" disabled="true">
+                      <option value="{{obj.manufacturer.id}}" class="" selected="selected"> {{obj.manufacturer.manufactName}}</option>
+                      </select>
+                
+                      </td>
+                      <td>{{obj.strength}}</td>
+                      <td>{{obj.price}}</td>
+                      <td><button ng-click="editDrug(obj)"  title="Edit" type="button" class="btn btn-warning btnEdit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button ng-click="selectDrug(obj)" data-toggle="modal" data-target="#deleteDurgModal" title="Delete" type="button" class="btn btn-danger btnEdit"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end col-md-10-->
+  </div>
+  <!--end row-->
+</div>
+
+
+<div id="alertMessage" class="alert alert-danger emptyMessage">
+  {{alertMessage}}
+</div>
+<div id="successMessage" class="alert alert-success emptyMessage">
+  {{successMessage}}
+</div>

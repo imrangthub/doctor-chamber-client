@@ -1,0 +1,69 @@
+<!-- Modal -->
+<div class="modal fade" id="addEditGenericModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modalCustomWidth2" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Almotriptan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body allformContent">
+        <form class="form-horizontal form_style form_style_drug ng-pristine ng-valid">
+          <div class="height_table_480 scrool_ber">
+            <div class="row">
+              <div class="col-md-6">
+                <table class="table table-bordered drug_table_area2 tableAlmoLeft">
+                  <tbody>
+                    <tr>
+                      <th style="width:120px;">Generic Name:</th>
+                      <td colspan="3"><input ng-model="generic.genericName" type="text" class="form-control forom_colordrug" placeholder="Name"></td>
+                    </tr>
+                    <tr>
+                      <th>Default Dose EN:</th>
+                      <td colspan="3"><input ng-model="generic.defaultDoseEn" type="text" class="form-control forom_colordrug" placeholder="English"></td>
+                    </tr>
+                    <tr>
+                      <th>Default Dose BN:</th>
+                      <td colspan="3"><input ng-model="generic.defaultDoseBn" type="text" class="form-control forom_colordrug" placeholder="Bangla"></td>
+                    </tr>
+                    <tr>
+                      <th>Other Doses:</th>
+                      <td><input ng-model="generic.dosesInfo"  type="text" class="form-control forom_colordrug" placeholder="Type and press enter"></td>
+                      <td style="width:40px;"><button class="btn btn_add_new btn-primary">Add</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <textarea class="text_area_drug2 form-control textArea2"></textarea>
+                <div class="well well_drug">Doses Help:</div>
+                <textarea ng-model="generic.doses" class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Description:</div>
+                <textarea ng-model="generic.description"  class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Indications:</div>
+                <textarea ng-model="generic.indications"  class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Side Effects:</div>
+                <textarea ng-model="generic.sideEfects"  class="text_area_drug2 form-control"></textarea>
+              </div>
+              <div class="col-md-6">
+                <div class="well well_drug">Pregnancy Problem:</div>
+                <textarea ng-model="generic.pregnancyInfo"  class="text_area_drug2 form-control textArea1"></textarea>
+                <div class="well well_drug">Lactation Problem:</div>
+                <textarea ng-model="generic.lactationInfo"  class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Liver Disease Problem:</div>
+                <textarea ng-model="generic.liverDiseaseInfo" class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Renal Disease Problem:</div>
+                <textarea ng-model="generic.renalDiseaseInfo" class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Contraindications:</div>
+                <textarea ng-model="generic.contraindication" class="text_area_drug2 form-control"></textarea>
+                <div class="well well_drug">Other Precautions:</div>
+                <textarea ng-model="generic.otherPrecautions" class="text_area_drug2 form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer footerCustom">
+        <button ng-click="resetGeneric()"  type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button ng-click="addUpdateGeneric()" data-dismiss="modal"  type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

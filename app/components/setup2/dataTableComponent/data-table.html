@@ -1,0 +1,10 @@
+<table datatable="" id="clinicalHistoryTable" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="table table-hover"></table>
+
+<script type="text/javascript">
+$(document).ready(function(){		
+	  $("#clinicalHistoryTable").on('click', 'tr', function () {		
+		  $('#clinicalHistoryTable tbody tr').removeClass("activetable");
+	      $(this).addClass("activetable");
+		});
+	});
+</script>

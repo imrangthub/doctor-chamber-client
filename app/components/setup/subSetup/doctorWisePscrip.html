@@ -1,0 +1,84 @@
+<div class="main_table_content">
+<!-- btnAllRow -->
+<div class="btnAllRow">
+<button  title="Edit" data-toggle="modal" data-target="#doctorWisePscripModal"  class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+</div>
+<!-- btnAllRow -->
+
+<div class="height_table_490 tableSetupOther">
+   <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" id="doctorWisePscripTable" class="table table-hover"></table> 
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="doctorWisePscripModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Doctor Prescription </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body allformContent">
+        
+<form>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-3 col-form-label">Doctor Id.</label>
+    <div class="col-sm-9">
+      <input ng-model="doctorWisePscrip.doctorId"  type="text" class="form-control" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Doctor Name</label>
+    <div class="col-sm-9">
+      <input ng-model="doctorWisePscrip.doctorName" type="text" class="form-control" disabled>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Pres. Temp</label>
+    <div class="col-sm-9">
+    	<select ng-model="doctorWisePscrip.presReportEntity.id" ng-init="doctorWisePscrip.presReportEntity.id = 0"   class="form-control" convert-to-number>
+          <option value="0" class="" selected="selected"> --Select Template-- </option>
+          <option ng-repeat="obj in presTemplateList" value="{{obj.id}}">{{obj.reportName}}</option> 
+        </select>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Pres. Form</label>
+    <div class="col-sm-9">
+      <select ng-model="doctorWisePscrip.presFormEntity.id" ng-init="doctorWisePscrip.presFormEntity.id = 0"   class="form-control" convert-to-number>
+          <option value="0" class="" selected="selected"> --Select Form-- </option>
+          <option ng-repeat="obj in presFormList" value="{{obj.id}}">{{obj.formName}}</option> 
+        </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-right">Active</div>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input ng-model="doctorWisePscrip.isEnable" class="form-check-input checkinput" type="checkbox" id="gridCheck1">
+        <label class="form-check-label checkLabel checkLabel2" for="gridCheck1">
+          Enable
+        </label>
+      </div>
+    </div>
+  </div>
+</form>      
+      </div>
+      <div class="modal-footer footerCustom">
+        <button ng-click="resetDoctorWisePscrip()"  type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+        <button ng-click="updateDoctorWisePscrip()" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){   
+    $("#doctorWisePscripTable").on('click', 'tr', function () {   
+      $('#doctorWisePscripTable tbody tr').removeClass("activetable");
+        $(this).addClass("activetable");
+    });
+});
+</script>
+

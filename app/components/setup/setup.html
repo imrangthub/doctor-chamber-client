@@ -1,0 +1,260 @@
+<div ng-include="'./app/components/setup/modal/delete.html'"></div>
+<div ng-include="'./app/components/setup/modal/edit.html'"></div>
+<div ng-include="'./app/components/setup/modal/illnessEdit.html'"></div>
+<div ng-include="'./app/components/setup/modal/editSignature.html'"></div>
+<!-- <div ng-include="'./app/components/setup/modal/docWisePres.html'"></div> -->
+<script src="./assets/bootstrap/js/jquery.dataTables.min.js"></script>
+<script src="./assets/bootstrap/js/dataTables.bootstrap4.min.js"></script>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-12 paddingLRNone">
+      <div class="leftSideBar">
+        <ul class="nav nav-tabs tab_learn2">
+
+     <!--      <li class="nav-item"> 
+            <a class="nav-link active" data-toggle="tab" href=".Patient">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Patient
+            </a> 
+          </li> -->
+          
+          <li class="nav-item"> 
+            <a class="nav-link active" data-toggle="tab" href=".clinicalHistory">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Clinical History
+            </a> 
+          </li>
+          <li class="nav-item"> 
+            <a id="initGtid" class="nav-link" data-toggle="tab" href=".ChiefComplain">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Chief Complain
+            </a> 
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".IllnessHistory">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Illness History
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".AutoComplete">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Auto Complete
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".OnExamination">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;On Examination
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".Diagnosis">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Diagnosis
+            </a> 
+          </li>
+    
+	        <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".VisitNote">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Visit note
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".Advice">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Advice
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a id="initGtid" class="nav-link" data-toggle="tab" href=".Finalization">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Finalization
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".PhysicalExamGroup">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Physical Exam Group
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a id="initPhysicalExamData" class="nav-link" data-toggle="tab" href=".PhysicalExamination">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Physical Examination
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".HistoryGroup">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;History Group
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a id="initHistoryData" class="nav-link" data-toggle="tab" href=".History">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;History
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".ShortKey">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Short Key
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a id="initManufactureGtid" class="nav-link" data-toggle="tab" href=".Manufacturer">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Manufacturer
+            </a> 
+          </li>
+
+          <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".SignatureSetup">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;Signature Setup
+            </a> 
+          </li>
+         
+          <!-- <li class="nav-item"> 
+            <a class="nav-link" data-toggle="tab" href=".DocWisePres">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;DoctorWisePrescription
+            </a> 
+          </li> 
+           -->
+          <li class="nav-item"> 
+          <a class="nav-link" data-toggle="tab" ng-click="reFreshChild('userPreferenceOn')" href=".userPreference">
+              <span class="fa fa-angle-right" aria-hidden="true"></span>
+              &nbsp;User Preference
+            </a> 
+          </li> 
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-10 col-sm-12 paddingLRNone">
+      <div class="tab-content content_area">
+<!--         <div class="tab-pane Patient">
+	        <div class="tabAllTitle">
+	        	<i class="fa fa-user-o" aria-hidden="true"></i> Patient
+	        </div>
+         <patient-component></patient-component>
+        </div>
+ -->
+
+        <div  class="tab-pane clinicalHistory">
+         <div class="tabAllTitle active">
+            Clinical History
+          </div>
+         <clinical-history-component></clinical-history-component>
+        </div>
+
+        <div  class="tab-pane ChiefComplain fade">
+         <div class="tabAllTitle">
+            Chief Complain
+          </div>
+         <chief-component></chief-component>
+        </div>
+
+        <div class="tab-pane IllnessHistory fade">
+          <div class="tabAllTitle">Illness History</div>
+          <illness-history></illness-history>
+        </div>
+
+        <div class="tab-pane Manufacturer fade">
+          <div class="tabAllTitle">Manufacturer</div>
+          <manufacturer></manufacturer>
+        </div>
+
+        <div class="tab-pane AutoComplete fade">
+          <div class="tabAllTitle">Auto Complete</div>
+          <auto-complete-component></auto-complete-component>
+        </div>
+
+        <div class="tab-pane OnExamination fade">
+          <div class="tabAllTitle">On Examination</div>
+          <on-examination></on-examination>
+        </div>
+	
+	      <div class="tab-pane Diagnosis fade">
+	        <div class="tabAllTitle">Diagnosis</div>
+          <diagnosis-component></diagnosis-component>
+        </div>
+        
+        <div class="tab-pane VisitNote fade">
+          <div class="tabAllTitle">Visit note</div>
+          <visitnote-component></visitnote-component>
+        </div>
+
+        <div class="Advice tab-pane fade">
+        <div class="tabAllTitle">Advice</div>
+         <advice-component></advice-component>
+        </div>
+
+       <div class="Finalization tab-pane fade">
+        <div class="tabAllTitle">Finalization</div>
+         <finalization-component></finalization-component>
+        </div>
+
+        <div class="PhysicalExamGroup tab-pane fade">
+        <div class="tabAllTitle">Physical Exam Group</div>
+         <physical-exam-group-component></physical-exam-group-component>
+        </div>
+
+        <div class="PhysicalExamination tab-pane fade">
+        <div class="tabAllTitle">Physical Exam</div>
+         <physical-exam-component></physical-exam-component>
+        </div>
+
+        <div class="HistoryGroup tab-pane fade">
+        <div class="tabAllTitle">History Group</div>
+         <history-group-component></history-group-component>
+        </div>
+
+        <div class="History tab-pane fade">
+        <div class="tabAllTitle">History</div>
+         <history-component></history-component>
+        </div>
+
+
+<div class="tab-pane SignatureSetup fade">
+		<div class="tabAllTitle">Signature Setup</div>
+    <signature-setup-components></signature-setup-components>
+</div>
+
+<div class="tab-pane ShortKey fade">
+      <div class="tabAllTitle">Short key</div>
+      <short-key-component></short-key-component>
+</div>
+
+<!-- <div class="tab-pane DocWisePres fade ">
+		<div class="tabAllTitle">Doctor Wise Prescription</div>
+    <doctor-wise-pscrip-component></doctor-wise-pscrip-component>
+</div> -->
+
+<div class="tab-pane userPreference fade">
+          <div class="tabAllTitle">User Preference</div>
+          <user-preference></user-preference>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

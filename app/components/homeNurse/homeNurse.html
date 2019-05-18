@@ -1,0 +1,184 @@
+<style>
+.nurseHome {
+	min-height: auto;
+	border: 0px;
+}
+.nurseInner {
+	border: solid 1px #b5d4e6;
+	margin: auto;
+	padding: 2px;
+}
+.viatalsNurseHeader {
+	width: 100%;
+	float: left;
+	background: #c1ebd9;
+}
+.nurseInner .vitalAreaTop {
+	padding: 0px !important;
+	display: inherit;
+}
+.viatalsNurseHeader span {
+	background: #5ebf94 !important;
+	border-radius: 4px 4px 0 0 !important;
+	padding: 3px;
+	color: #fff;
+	float: left;
+	width: 70px;
+	text-align: center;
+}
+div#vitalNurseCol {
+	width: 78%;
+	min-height: 90px;
+	border-right: solid 1px #b5d4e6;
+	float: left;
+}
+.nurseVitalsForm {
+	width: 100%;
+	float: left;
+	padding: 18px;
+}
+.nurseVitalsForm label {
+	text-align: right;
+	color: #00707e;
+	font-weight: bold;
+	margin-bottom: 0px;
+	margin-bottom: 0px;
+}
+.nurseVitalsForm .form-group {
+	margin-bottom: 1px;
+}
+.nurseVitalsForm input {
+	height: 32px;
+}
+.nurseVitalsForm textarea {
+	height: 40px !important;
+	margin-bottom: 5px;
+}
+.nurseVitalsForm .form-control {
+	height: 30px;
+	border: solid 1px #97c8d4;
+}
+.btn_all_topprintNurse {
+	width: 20%;
+	left: 9px;
+	float: left;
+	position: relative;
+	padding-top: 0%;
+}
+.btn_all_topprintNurse .form-check {
+	margin-bottom: 12px;
+}
+.searVitalsNurse {
+	margin-top: 12px;
+	margin-bottom: 5px;
+}
+.searVitalsNurse .form-control {
+	height: 30px;
+}
+</style>
+
+<!-- start printOption -->
+<div class="printOption" ng-keypress="catchKeyPress($event)">
+  <div class="container-fluid">
+    <div class="top_section_all paddBtm nurseHome">
+      <div class="row padding_none">
+        <div class="col-md-7 col-sm-12 nurseInner searVitalsNurse">
+          <table class="table table-bordered table-striped table-sm setupAll">
+            <tbody>
+              <tr>
+                <td style="width: 50%; background-color: #c1ebd9; font-size: large; padding: 5px; color:#00707e">
+                 <span>{{patient.doctorName}}</span>
+                </td>
+                <td  style="width: 50%;" class="typeahedCustom">
+                  <input  type="text" name="selectedPatient" ng-model="selectedPatient"
+                  ng-enter="typeaheadEnterPress(selectedPatient.consultationId)" uib-typeahead="patient as patient.consultationId for patient in searchPatients($viewValue)"
+                  typeahead-on-select="getSelectedPatient($item, $model, $label)" typeahead-loading="loadingLocations"
+                  typeahead-no-results="noResults" class="form-control patientInput" ng-class="{'loading-typeadhad':loadingLocations}"
+                  id="inlineFormInputGroup" typeahead-template-url="app/components/typeaheadTemplate/nurse-home-consulation-search.html"
+                  placeholder=" Type Consultation ID" autocomplete="off" />
+                </td>
+                <td style="width:60px;"><button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-7 col-sm-12 nurseInner">
+          <div class="patient_all_info_hom2">
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th style="width:66px;" class="text-left">Patient ID</th>
+                    <td style="width:270px;" class="text-left">: {{patient.hospitalNo}}</td>
+                    <th style="width:96px;" colspan="2" class="text-left">Cons. ID</th>
+                    <td style="width:170px;" colspan="3">: {{patient.consultationId}}</td>
+                    <th style="width:96px;" class="text-left">Pres. ID</th>
+                    <td style="width:170px;">: {{prescription.id}}</td>
+                  </tr>
+                  <tr>
+                    <th style="width:96px; vertical-align: top;" class="text-left">Patient Name</th>
+                    <td colspan="8" style="white-space: inherit;">: {{patient.patientName}}</td>
+                  </tr>
+                  <tr>
+                    <th style="width:36px;" class="text-left">Age</th>
+                    <td colspan="2">: {{patient.age}}</td>
+                    <th style="width:46px;" class="text-left">Gender</th>
+                    <td>: {{patient.gender}}</td>
+                    <th  style="width:170px;" class="text-left"></th>
+                    <td></td>
+                    <th style="width:66px;" class="text-left">Mobile No</th>
+                    <td  white-space: initial;">: {{patient.phoneNo}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="table_content table_all_padding">
+            <div class="vitalAreaTop" ng-hide="{{isTabVitalEnable}}">
+              <div id="vitalNurseCol">
+                <div class="viatalsNurseHeader"> <span>Vitals</span> </div>
+                <div class="nurseVitalsForm">
+
+                  <div ng-repeat="vital in vitalData | orderBy: 'vitalSerial'" class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">{{vital.vitalName}}</label>
+                    <div class="col-sm-10">
+                      <input ng-init='vital.vitalResult=vital.defaultValue' ng-if="vital.inputType == 1"  ng-model="vital.vitalResult" placeholder="{{vital.vitalUnit}}" ng-readonly="patient.consult_out==1" type="text" class="form-control">
+                      <textarea ng-init='vital.vitalResult=vital.defaultValue' class="mine-textarea"   ng-if="vital.inputType == 2"  ng-model="vital.vitalResult" ng-readonly="patient.consult_out==1"    rows="3" cols="45" maxlength="250"> </textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="btn_all_topprintNurse">
+                <div class="btn_all_topprint">
+                  <div class="print_top2 text-center compinput">
+                    <button type="button" class="btn btn-success print_btn2" ng-click="onSave(isSaveFromTab=false)" ng-disabled="patient.consult_out==1"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                    <button ng-if="currentUserPrintPreference.userPreferencesValue != 0 && prescription.id" ng-click="onPrint(prescription);" type="button" class="btn btn-primary print_btn2 clicktoggle show1" ng-disabled="patient.consult_out!=1"> <i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</button>
+                    <a href="#/worklistnurse" title="Work list">
+                    <button type="button" class="btn btn-warning workListBtn"> <i class="fa fa-th-list" aria-hidden="true"></i> </button>
+                    </a> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end printOption -->
+
+<div id="alertMessage" class="alert alert-danger emptyMessage"> {{alertMessage}} </div>
+<div id="successMessage" class="alert alert-success emptyMessage"> {{successMessage}} </div>
+<script type="text/javascript">
+    $(document).ready(function(){   
+        $(".activeColortable").on('click', 'tr', function () {   
+          $('.activeColortable tbody tr').removeClass("activetableTable");
+            $(this).addClass("activetableTable");
+        });
+      });
+  </script> 
+

@@ -1,0 +1,124 @@
+  <div class="title-bar">
+    <div class="buttons">
+      <div class="close"></div>
+      <div class="minimize"></div>
+      <div class="maximize"></div>
+    </div>
+    <p class="modal_p"> OPD Consultation History</p>
+  </div>
+  <div class="window">
+    <div class="all_report">
+      <div class="header_report"> 
+        <!-- hospital_info -->
+<!--         <div class="hospital_info">
+          <div class="logo_hospital"><img src="assets/images/c_labaid_ltd.jpg" all=""></div>
+          <div class="hospital_others">
+            <h3>LABAID Specialized Hospital {{patient}}</h3>
+            <p> Mirpur-1 
+              Dhaka-1215 </p>
+          </div>
+        </div>
+ -->        <!-- end hospital_info --> 
+        
+        <!-- patient_info -->
+        <div class="patient_all_info">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th>HN:</th>
+                <td>{{ctrl.patient.hospitalNo}}</td>
+                <th>Name:</th>
+                <td>{{ctrl.patient.patientName}}</td>
+              </tr>
+              <tr>
+                <th>Cn.Date:</th>
+                <td>12-12-2017</td>
+                <th>Consult By:</th>
+                <td>Dr.Rehnuma Jahan<br>
+                  (Obstetrics & Gynecology)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end patient_info -->
+        <h2>OPD Clinical Record</h2>
+      </div>
+      
+      <!-- patient_all_info_middle -->
+      <div class="patient_all_info patient_all_info_middle">
+        <ul ng-repeat="vital in ctrl.vitalList" class="ulVitalUl ">
+         <li class="viatalTitleHead">{{vital.vitalName}} ({{vital.vitalUnit}})</li>
+         <li class="viatalTitleDetails">{{vital.vitalResult}}</li>
+        </ul>
+      </div>
+      <!-- end patient_all_info_middle --> 
+      
+      <!-- p_lscs -->
+      <p class="p_lscs"> <span>Clinical History: </span> <span>{{ctrl.note.prescritionData}}</span> </p>
+      <!-- p_lscs -->
+      
+      <h5 class="doctor_rx">R<sub>X</sub></h5>
+      
+      <!-- patient_all_info_middle -->
+      <div class="patient_all_info patient_all_info_middle patient_all_info_middle2">
+        <table class="table table-borderless table-sm">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>Medicine</th>
+              <th>Per take</th>
+              <th>Instruction</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="medicine in ctrl.medicineList">
+              <td>{{$index +1 }}</td>
+              <td>{{medicine.brandName}}</td>
+              <td>{{medicine.dosage}}</td>
+              <td>{{medicine.relationWithMeal}}</td>
+              <td>{{medicine.duration}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end patient_all_info_middle --> 
+      
+      <!-- p_lscs -->
+      <p class="p_lscs p_instruction">
+       <span><strong>Chief Complain</strong></span>
+        <span ng-repeat="obj in ctrl.chiefComplainList" >{{obj.prescritionData}}</span>
+      </p>
+      <!-- p_lscs -->
+
+
+      <!-- p_lscs -->
+      <p class="p_lscs p_instruction">
+       <span><strong>Investigation</strong></span>
+        <span ng-repeat="obj in ctrl.investigatList" >{{obj.prescritionData}}</span>
+      </p>
+      <!-- p_lscs -->
+
+
+      <!-- p_lscs -->
+      <p class="p_lscs p_instruction">
+       <span><strong>Diagnosis</strong></span>
+        <span ng-repeat="obj in ctrl.diagnosisList" >{{obj.prescritionData}}</span>
+      </p>
+      <!-- p_lscs -->
+
+            <!-- p_lscs -->
+      <p class="p_lscs p_instruction">
+       <span><strong>Advice</strong></span>
+        <span ng-repeat="obj in ctrl.adviceList" >{{obj.prescritionData}}</span>
+      </p>
+      <!-- p_lscs -->
+
+
+      <p class="p_lscs p_instruction">
+       <span><strong>Finalization</strong></span>
+        <span ng-repeat="obj in ctrl.finalizationList"><strong>{{obj.finalizeName}} : </strong>{{obj.finalizeResult}}</span>
+      </p>
+      <!-- p_lscs -->
+    </div>
+  </div>

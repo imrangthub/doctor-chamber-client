@@ -1,0 +1,10 @@
+<div class="leftSideBar">
+  <ul class="nav nav-tabs tab_learn2">
+    <li class="nav-item" ng-repeat="menu in menuArray"> 
+      <a id="{{menu.id}}" class="nav-link active" data-toggle="tab" ui-sref="{{menu.menuelink}}">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        &nbsp;{{menu.menueHead}}
+      </a> 
+    </li>
+  </ul>
+</div>

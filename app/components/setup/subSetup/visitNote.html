@@ -1,0 +1,87 @@
+<div class="main_table_content">
+<!-- btnAllRow -->
+<div class="btnAllRow">
+ <button  title="Add Chif Complain" data-toggle="modal" data-target="#addVisit"  class=" btn btn-success addBtnSetup"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+<button  title="Edit" data-toggle="modal" data-target="#addVisit"  class=" btn btn-warning addBtnSetup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+<button  title="Delete" data-toggle="modal" data-target="#deleteVistiNote"  class=" btn btn-danger addBtnSetup"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+</div>
+<!-- btnAllRow -->
+  <div class="height_table_490 tableSetupOther">
+    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" id="visitNoteDataTable" class="table table-hover"></table>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="addVisit">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header modal_header_custom">
+          <h4 class="modal-title">Add Visit Note</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+         <table class="table table-bordered table-striped table-sm setupAll">
+          <tbody>
+            <tr>
+              <th style="width:80px;">Name:</th>
+              <td><input ng-model="visitNote.noteName"  class="form-control" type="text" placeholder="Type Name..."></td>
+            </tr>
+            <tr>
+              <td colspan="2"><textarea ng-model="visitNote.noteDescription"   name="editor"></textarea></td>
+            </tr>
+           
+          </tbody>
+        </table>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button ng-click="saveOrUpdateVisitNote()" data-dismiss="modal" type="button" class="btn btn-info">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="deleteVistiNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_custom">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body allformContent">
+        <h4 class="deleteh4">Do you want Delete?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button ng-click="deleteVistiNote()" data-dismiss="modal" type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+<div id="alertMessage" class="alert alert-danger emptyMessage">
+  {{alertMessage}}
+</div>
+<div id="successMessage" class="alert alert-success emptyMessage">
+  {{successMessage}}
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){   
+      $("#visitNoteDataTable").on('click', 'tr', function () {   
+        $('#visitNoteDataTable tbody tr').removeClass("activetable");
+          $(this).addClass("activetable");
+      });
+    });
+</script>
