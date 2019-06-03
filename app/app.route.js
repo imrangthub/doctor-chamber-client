@@ -49,10 +49,30 @@ app.config(function ($stateProvider, $urlRouterProvider,  $ocLazyLoadProvider, $
     $urlRouterProvider.otherwise('/error/notfound');
 
     $stateProvider
-        .state('home', {
-            url: '/home',
-            template: '<home-controller></home-controller>'
-        })
+
+            .state('home', {
+                url: '/home',
+                template: '<doctorchamber-controller></doctorchamber-controller>'
+            })
+
+            .state('serviceSection', {
+                url: '/serviceSection',
+                template: '<servicesection-controller></servicesection-controller>'
+            })
+            .state('contactSection', {
+                url: '/contactSection',
+                template: '<contactsection-controller></contactsection-controller>'
+            })
+            .state('aboutUsSection', {
+                url: '/aboutUsSection',
+                template: '<aboutsection-controller></aboutsection-controller>'
+            })
+
+    
+        // .state('home', {
+        //     url: '/home',
+        //     template: '<home-controller></home-controller>'
+        // })
         
         .state('hometwo', {
             url: '/hometwo',

@@ -33,7 +33,7 @@ app.run(function ($rootScope, $location, $state) {
 
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
-    		//console.log("***"+toState.name+"***");
+    //	console.log("***"+toState.name+"***");
     	$rootScope.state = toState.name;
             if (localStorage.getItem('accessToken')) {
                 if ("root" === toState.name) {
@@ -47,6 +47,13 @@ app.run(function ($rootScope, $location, $state) {
             }
             else if ("login" === toState.name) {
               //console.log("Please log in.");
+            }else if("home" === toState.name){
+            }
+            else if("contactSection" === toState.name){
+            }
+            else if("serviceSection" === toState.name){
+            }
+            else if("aboutUsSection" === toState.name){
             }
             else {
                 event.preventDefault();

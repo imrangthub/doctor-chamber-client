@@ -28,6 +28,7 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
     }
 	
     $scope.data ={};
+ 
 
     $scope.AccessUser = function() {
         $scope.allCompanyInfo = [];
@@ -48,22 +49,28 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
             if(data.success){
                 $scope.data = data.model;
                console.log("loged success Info:", data.model);
-                $scope.getUserPreference(data.model.userNo);
+               $scope.getUserPreference(data.model.userNo);
 
-                var logedUserInfo = {
-                    empName        : $scope.data.empName,
-                    userName       : $scope.data.userName,
-                    userNo         : $scope.data.userNo,
-                    isDoctor       : $scope.data.isDoctor,
-                    formLink       : $scope.data.formLink,
-                    reportLink     : $scope.data.reportLink,
-                    companyInfo    : $scope.companyInfo,
-                    preferenceInfo : $scope.userPreferenceData
-                }
-                console.log("Log UserInfo:",logedUserInfo);
-                localStorage.setItem("accessToken", JSON.stringify($scope.data.userNo));
-                localStorage.setItem("loginInfo",JSON.stringify(logedUserInfo));
-                $location.path('/worklist');
+
+                setTimeout(function() {
+                    var logedUserInfo = {
+                        empName        : $scope.data.empName,
+                        userName       : $scope.data.userName,
+                        userNo         : $scope.data.userNo,
+                        isDoctor       : $scope.data.isDoctor,
+                        formLink       : $scope.data.formLink,
+                        reportLink     : $scope.data.reportLink,
+                        companyInfo    : $scope.companyInfo,
+                        preferenceInfo : $scope.userPreferenceData
+                    }
+                    console.log("Log UserInfo:",logedUserInfo);
+                    localStorage.setItem("accessToken", JSON.stringify($scope.data.userNo));
+                    localStorage.setItem("loginInfo",JSON.stringify(logedUserInfo));
+                    $location.path('/worklist');
+
+                }, 1000);
+
+       
 
 
             } else {
@@ -72,6 +79,8 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
         })
 
     };
+
+
 
     // $scope.AccessUser = function() {
     //     $scope.allCompanyInfo = [];
