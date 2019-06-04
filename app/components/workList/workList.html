@@ -85,31 +85,43 @@
                 <input class="form-check-input" type="radio" id="all" ng-model="consultationStatus" value="all" name="contlStatusRadioBtn">
                 <label class="all_bg form-check-label align_center" for="all">All <br/>({{patients.length}})</label>
               </div>
-              <div class="form-check form-check-inline">
+              <!-- <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="waiting" ng-model="consultationStatus" value="waiting" name="contlStatusRadioBtn">
                 <label class="waiting_bg form-check-label align_center" for="waiting">Waiting <br/>({{filteredpatientsbyWait.length}})</label>
-              </div>
+              </div> -->
 
-                <div class="form-check form-check-inline">
+                <!-- <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="newPatient" ng-model="consultationStatus" value="newPatient" name="contlStatusRadioBtn">
                   <label class="fresh_bg form-check-label align_center" for="newPatient">Fresh Visit <br/>({{filteredpatientsbyNewPatient.length}})</label>
-                </div>
+                </div> -->
+
+
                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="1stFollowUp" ng-model="consultationStatus" value="1stFollowUp" name="contlStatusRadioBtn">
+                    <label class="follow_up_bg form-check-label align_center" for="1stFollowUp">Waiting <br/>({{filteredpatientsby1stFollowUp.length}})</label>
+                  </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="newPatient" ng-model="consultationStatus" value="newPatient" name="contlStatusRadioBtn">
+                    <label class="fresh_bg form-check-label align_center" for="newPatient">Check Out <br/>({{filteredpatientsbyNewPatient.length}})</label>
+                  </div>
+
+                <!-- <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="reportCheck" ng-model="consultationStatus" value="reportCheck" name="contlStatusRadioBtn">
                   <label class="report_bg form-check-label align_center" for="reportCheck">Report Check <br/>({{filteredpatientsbyReportCheck.length}})</label>
-                </div>
-                <div class="form-check form-check-inline">
+                </div> -->
+                <!-- <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="1stFollowUp" ng-model="consultationStatus" value="1stFollowUp" name="contlStatusRadioBtn">
                   <label class="follow_up_bg form-check-label align_center" for="1stFollowUp">Follow Up <br/>({{filteredpatientsby1stFollowUp.length}})</label>
-                </div>
-                <div class="form-check form-check-inline">
+                </div> -->
+                <!-- <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="complted" ng-model="consultationStatus" value="complted" name="contlStatusRadioBtn">
                   <label class="done_bg form-check-label align_center" for="complted">Done <br/>({{filteredpatientsbyCompleted.length}})</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="appointed" ng-model="consultationStatus" value="appointed" name="contlStatusRadioBtn">
                   <label class="appointed_bg form-check-label align_center" for="appointed">Appointed <br/>({{filteredpatientsbyAppointed.length}})</label>
-                </div>
+                </div> -->
 
             </div>
             
@@ -128,8 +140,6 @@
 
                   <th style="text-align: center;">SL#</th>
                   <th style="text-align: center;">Appoint Date</th>
-                  <th style="text-align: center;">Start Time</th>
-                  <th style="text-align: center;">End Time</th>
                 
                   <th style="text-align: center;">Hospital Number</th>
                   <th style="text-align: center;">Patient's Name</th>
@@ -144,8 +154,6 @@
                 <tr class="stickytr">
                   <td></td>
                   <td></td>
-                  <td><input class="form-control" type="text" disabled></td>
-                  <td><input class="form-control" type="text" disabled></td>
                   <td><input class="form-control" ng-model="searchParms.hospitalNo" type="text"></td>
                   <td><input class="form-control" ng-model="searchParms.patientName" type="text"></td>
                   <td><input class="form-control" ng-model="searchParms.age" type="text"placeholder=""></td>
@@ -158,10 +166,9 @@
               </thead>
               <tbody>
                 <tr ng-repeat="obj in patients | orderBy : ['appointmentDt','slotSerial'] | filter:searchParms"  ng-class="{ report: (obj.consultationType==4 && obj.consult_out==0 && obj.consultationId!=null), fresh : (obj.consultationType==1 && obj.consult_out==0 && obj.consultationId!=null), follow_up: (obj.consultationType==2 && obj.consult_out==0 && obj.consultationId!=null), done_new: (obj.consult_out==1 && obj.consultationId!=null), appointed: (obj.consultationId==null)}" ng-click="selectWorkListRow(obj)" ng-dblClick="startPrescription(obj)">
-                    <td>{{obj.slotSerial}}</td>
+      
+                  <td>{{index }}</td>
                     <td style="text-align: center;">{{obj.appointmentDt | date:'dd-MMM-yyyy'}}</td>
-                    <td style="text-align: center;">{{obj.startTime}}</td>
-                    <td style="text-align: center;">{{obj.endTime}}</td>
                     <td style="text-align: center;">{{obj.hospitalNo}}</td>
                     <td>{{obj.patientName}}</td>
                     <td>{{obj.age}}</td>
@@ -175,52 +182,7 @@
                     </td>
                   </tr>
               </tbody>
-              <!-- <tbody>
-                <tr style="display: none" ng-repeat-start="(k1, v1) in listval | orderBy : 'property' :true" ng-click="selectWorkListRow(obj)" ng-dblClick="startPrescription(obj)">
-                  <tr style="display: none" ng-repeat-start="(k1, v3) in v1.data | orderBy : 'property'" ng-click="selectWorkListRow(obj)" ng-dblClick="startPrescription(obj)">
-                    <tr>
-                        <td style="vertical-align: middle;" rowspan="{{v3.data.length + 1}}" ng-class="{ morning_worklist : v3.property == 1, evening_worklist : v3.property == 2}">
-                        <span style="font-size: 15px;" ng-if="v3.property == 1">{{v1.property | date:'dd-MMM-yyyy'}} - Morning ({{v3.data.length}})</span>
-                        <span style="font-size: 15px;" ng-if="v3.property == 2">{{v1.property | date:'dd-MMM-yyyy'}} - Evening ({{v3.data.length}})</span>
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr ng-repeat="(k2, v2) in v3.data | orderBy : ['appointmentDt','slotSerial'] | filter:searchParms"  ng-class="{ report: (obj.consultationType==4 && obj.consult_out==0 && obj.consultationId!=null), fresh : (obj.consultationType==1 && obj.consult_out==0 && obj.consultationId!=null), follow_up: (obj.consultationType==2 && obj.consult_out==0 && obj.consultationId!=null), done_new: (obj.consult_out==1 && obj.consultationId!=null), appointed: (obj.consultationId==null)}">
-                      <td>{{v2.slotSerial}}</td>
-                      <td style="text-align: center;">{{v2.startTime}}</td>
-                      <td style="text-align: center;">{{v2.endTime}}</td>
-                      <td style="text-align: center;">{{v2.hospitalNo}}</td>
-                      <td>{{v2.patientName}}</td>
-                      <td>{{v2.age}}</td>
-                      <td style="text-align: center;">{{v2.gender | uppercase}}</td>
-                      <td style="text-align: center;">{{v2.phoneNo}}</td>
-                      <td style="text-align: center;">{{v2.consultationId}}</td>
-                      <td style="text-align: center;">{{v2.consultationTime | date:'dd-MMM-yyyy hh:mm a'}}</td>
-                      <td>
-                        <button class="btn btn-primary btnsc" ng-click="startPrescription(v2)">
-                          <i class="fa fa-user-md" aria-hidden="true"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  <tr style="display: none" ng-repeat-end></tr>
-                <tr style="display: none" ng-repeat-end></tr>
-              </tbody>
-            </table>
-          </div>
-          </div>
-        </div>
-        </div>
-        <!--end patientList--> 
+              
     
       
     </div>
