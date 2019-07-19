@@ -147,7 +147,7 @@
                   <th style="text-align: center;">Gender</th>
                   <th style="text-align: center;">Mobile</th>
                   <th style="text-align: center;">Consultation Id</th>
-                  <th style="text-align: center;">Bill Date</th>
+                  <!-- <th style="text-align: center;">Bill Date</th> -->
                   <th style="width:66px;">Go To</th>
                 </tr>
 
@@ -160,14 +160,14 @@
                   <td><input class="form-control" ng-model="searchParms.gender" type="text"placeholder=""></td>
                   <td><input class="form-control" ng-model="searchParms.phoneNo" type="text"placeholder=""></td>
                   <td><input class="form-control" ng-model="searchParms.consultationId" type="text"placeholder=""></td>
-                  <td><input class="form-control" type="text" disabled></td>
+                  <!-- <td><input class="form-control" type="text" disabled></td> -->
                   <td></td>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="obj in patients | orderBy : ['appointmentDt','slotSerial'] | filter:searchParms"  ng-class="{ report: (obj.consultationType==4 && obj.consult_out==0 && obj.consultationId!=null), fresh : (obj.consultationType==1 && obj.consult_out==0 && obj.consultationId!=null), follow_up: (obj.consultationType==2 && obj.consult_out==0 && obj.consultationId!=null), done_new: (obj.consult_out==1 && obj.consultationId!=null), appointed: (obj.consultationId==null)}" ng-click="selectWorkListRow(obj)" ng-dblClick="startPrescription(obj)">
       
-                  <td>{{index }}</td>
+                  <td>{{$index+1}}</td>
                     <td style="text-align: center;">{{obj.appointmentDt | date:'dd-MMM-yyyy'}}</td>
                     <td style="text-align: center;">{{obj.hospitalNo}}</td>
                     <td>{{obj.patientName}}</td>
@@ -175,7 +175,7 @@
                     <td style="text-align: center;">{{obj.gender | uppercase}}</td>
                     <td style="text-align: center;">{{obj.phoneNo}}</td>
                     <td style="text-align: center;">{{obj.consultationId}}</td>
-                    <td style="text-align: center;">{{obj.consultationTime | date:'dd-MMM-yyyy hh:mm a'}}</td>
+                    <!-- <td style="text-align: center;">{{obj.consultationTime | date:'dd-MMM-yyyy hh:mm a'}}</td> -->
                     <td>
                       <button class="btn btn-primary btnsc" 
                       ng-click="startPrescription(obj)"><i class="fa fa-user-md" aria-hidden="true"></i></button>

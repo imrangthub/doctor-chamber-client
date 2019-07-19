@@ -14,6 +14,19 @@ app.service('apiService', function($httpParamSerializerJQLike, $timeout, $http, 
         });
     };
 
+    this.searchDoctorlist = function(className, param, callback) {
+        $http({
+          method: "GET",
+          url: serverUrl + "/api/" + className + "/findListByDoctorNo?" + param,
+          data: param,
+          headers: {
+            "content-type": "application/json"
+          }
+        }).success(function(response) {
+          callback(response);
+        });
+    };
+
     this.listObjectWithQueryParams = function(className, param, callback){
         $http({
             method: "POST",

@@ -6,13 +6,16 @@ app.component('aboutsectionController', {
 
 this.$onInit = function() {
 	$scope.appointment = {
-		gender:"MALE"
+		gender:"MALE",
+		doctor_no:"0"
 	};
 	$scope.selectedAppointment = {};
 	$scope.appointmentList = [];
 
 	$scope.medicineData = [];
 
+	$scope.searchDoctorlist137();
+	$scope.searchDoctorlist2();
 
 }
 
@@ -29,17 +32,61 @@ $scope.onBookAppoitnment = function(){
 		$('#alertMessage').show().delay(2000).fadeOut();
 		return;
 	}
+
+	if(!$scope.appointment.doctor_no){
+		$scope.alertMessage = "Please Select a doctor !";
+		$('#alertMessage').show().delay(2000).fadeOut();
+		return;
+	}
 	
 
 	obj= $scope.appointment;
 	console.log("Bookappoint Obj: ",obj);
 
 	apiService.createObject("consulation", obj, function(response){
-		$scope.successMessage = "Appoitnment book successfully !"; 
-		$('#successMessage').show().delay(2000).fadeOut();
-		$scope.resetAppointForm();            
+		if(response.success==true){
+		    $scope.successMessage = response.message; 
+			$('#successMessage').show().delay(2000).fadeOut();
+			if($scope.appointment.doctor_no == '137'){
+				$scope.searchDoctorlist137();
+			}else if($scope.appointment.doctor_no == '2'){
+				$scope.searchDoctorlist2();
+			}
+			$scope.resetAppointForm();
+		}else{
+			$scope.alertMessage = response.message; 
+			$('#alertMessage').show().delay(2000).fadeOut();
+		}
+            
 	 });
 	
+}
+
+$scope.searchDoctorlist137 = function(){
+	let doctorNoStr = {doctorNo : 137};
+    let querystring = encodeQueryData(doctorNoStr);
+	apiService.searchDoctorlist("consulation", querystring, function(response){
+		if(response.success==true){
+			$scope.patientsFor137 = response.items;
+		}else{
+			$scope.alertMessage = response.message; 
+			$('#alertMessage').show().delay(2000).fadeOut();
+		}
+            
+	 });
+	}
+
+$scope.searchDoctorlist2 = function(){
+	 let doctorNoStr = {doctorNo : 2};
+	 let querystring = encodeQueryData(doctorNoStr);
+	 apiService.searchDoctorlist("consulation", querystring, function(response){
+		 if(response.success==true){
+			 $scope.patientsFor2 = response.items;
+		 }else{
+			 $scope.alertMessage = response.message; 
+			 $('#alertMessage').show().delay(2000).fadeOut();
+		 }		 
+  });
 }
 
 
@@ -48,7 +95,8 @@ $scope.onBookAppoitnment = function(){
 
 $scope.resetAppointForm = function(){
 	$scope.appointment = {
-		gender:"MALE"
+		gender:"MALE",
+		doctor_no:"0"
 	};
 }
    
@@ -63,6 +111,12 @@ $scope.resetAppointForm = function(){
 
 
 
+function encodeQueryData(data) {
+    let ret = [];
+    for (let d in data)
+      ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+    return ret.join("&");
+  };
 
 
 
