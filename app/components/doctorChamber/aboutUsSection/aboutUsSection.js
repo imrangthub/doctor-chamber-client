@@ -33,7 +33,7 @@ $scope.onBookAppoitnment = function(){
 		return;
 	}
 
-	if(!$scope.appointment.doctor_no){
+	if($scope.appointment.doctor_no=='0'){
 		$scope.alertMessage = "Please Select a doctor !";
 		$('#alertMessage').show().delay(2000).fadeOut();
 		return;
@@ -51,6 +51,8 @@ $scope.onBookAppoitnment = function(){
 				$scope.searchDoctorlist137();
 			}else if($scope.appointment.doctor_no == '2'){
 				$scope.searchDoctorlist2();
+			}else if($scope.appointment.doctor_no == '3'){
+				$scope.searchDoctorlist3();
 			}
 			$scope.resetAppointForm();
 		}else{
@@ -87,6 +89,19 @@ $scope.searchDoctorlist2 = function(){
 			 $('#alertMessage').show().delay(2000).fadeOut();
 		 }		 
   });
+}
+
+$scope.searchDoctorlist3 = function(){
+	let doctorNoStr = {doctorNo : 3};
+	let querystring = encodeQueryData(doctorNoStr);
+	apiService.searchDoctorlist("consulation", querystring, function(response){
+		if(response.success==true){
+			$scope.patientsFor3 = response.items;
+		}else{
+			$scope.alertMessage = response.message; 
+			$('#alertMessage').show().delay(2000).fadeOut();
+		}		 
+ });
 }
 
 

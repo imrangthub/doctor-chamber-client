@@ -15,7 +15,7 @@
                     <nav class="site-navigation d-flex justify-content-end align-items-center">
                         <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
                             <li class="current-menu-item"><a href="#home">Home</a></li>
-                            <li><a href="#aboutUsSection">Appoitnment</a></li>
+                            <li><a href="#aboutUsSection">Appointment</a></li>
 
                             <li><a href="#serviceSection">Services</a></li>
                             <!-- <li><a href="news.html">News</a></li> -->
@@ -161,6 +161,18 @@
                 <span class="badge badge-light">SL# {{$index+1}}</span> {{obj.patientName}}
             </button>
         </div>
+</div>
+
+<div class="row" style="margin: 10px">
+    <div class="col-md-10 well" style="margin: auto; padding:5px; background-color: midnightblue;">
+        <ul class="list-group">
+            <li class="list-group-item active bg-secondary text-white">Dr. Kamruzzaman</li>
+        </ul>
+        <P></P>
+        <button type="button"  class="btn btn-warning" ng-repeat="obj in patientsFor3 | orderBy : 'id'" style="margin: 5px">
+            <span class="badge badge-light">SL# {{$index+1}}</span> {{obj.patientName}}
+        </button>
+    </div>
 </div>
 
 
