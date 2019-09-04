@@ -4,16 +4,6 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
         $scope.userPreferenceData = [];
     }     
 
-    $scope.getUserPreference = function(userNo) {
-        var postData = {id : userNo};
-        var querystring = $rootScope.encodeQueryData(postData);
-            apiService.listObjectWithQueryParams("user-preferences", querystring, function(response){
-            $scope.userPreferenceData = response.items;
-            console.log("$scope.userPreferenceData ",$scope.userPreferenceData );
-
-        });
-    }
-
     $scope.pressEnterInUsernameField = function(){
        // console.log("pressEnterInUsernameField");
         var inputPassword = document.getElementById("inputPassword");
@@ -26,11 +16,20 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
         angular.element(myEl).focus();
        // document.getElementById("inputCompany").focus();
     }
+
+    $scope.getUserPreference = function(userNo) {
+        var postData = {id : userNo};
+        var querystring = $rootScope.encodeQueryData(postData);
+            apiService.listObjectWithQueryParams("user-preferences", querystring, function(response){
+            $scope.userPreferenceData = response.items;
+            console.log("$scope.userPreferenceData ",$scope.userPreferenceData );
+
+        });
+    }
 	
     $scope.data ={};
- 
 
-    $scope.AccessUser = function() {
+    $scope.AccessUser = function() {                    // Using Promise 
         $scope.allCompanyInfo = [];
         $http({
             method: "POST",
@@ -48,37 +47,104 @@ app.controller('loginCtroller', function($scope, $http, $location, $httpParamSer
         	
             if(data.success){
                 $scope.data = data.model;
-               console.log("loged success Info:", data.model);
-               $scope.getUserPreference(data.model.userNo);
-
-
-                setTimeout(function() {
-                    var logedUserInfo = {
-                        empName        : $scope.data.empName,
-                        userName       : $scope.data.userName,
-                        userNo         : $scope.data.userNo,
-                        isDoctor       : $scope.data.isDoctor,
-                        formLink       : $scope.data.formLink,
-                        reportLink     : $scope.data.reportLink,
-                        companyInfo    : $scope.companyInfo,
-                        preferenceInfo : $scope.userPreferenceData
-                    }
-                    console.log("Log UserInfo:",logedUserInfo);
-                    localStorage.setItem("accessToken", JSON.stringify($scope.data.userNo));
-                    localStorage.setItem("loginInfo",JSON.stringify(logedUserInfo));
-                    $location.path('/worklist');
-
-                }, 1000);
-
-       
-
-
+                console.log("loged success Info:", data.model);
+                $scope.secondStep();
             } else {
                 localStorage.removeItem("loginInfo");                                           
             }
         })
 
     };
+    $scope.secondStep = function secondStep(){
+        var p1 = new Promise(function(resolve,reject){
+            var postData = {id : $scope.data.userNo};
+            var querystring = $rootScope.encodeQueryData(postData);
+                apiService.listObjectWithQueryParams("user-preferences", querystring, function(response){
+                $scope.userPreferenceData = response.items;
+                console.log("$scope.userPreferenceData ",$scope.userPreferenceData );
+                
+                resolve();              
+            });  
+        });
+    
+        p1.then(function(){
+            console.log("From then function");
+            $scope.goToWorkListWithUserPreference();
+        }).catch(function(){
+            console.log("Got Error from Promise P1");
+        });
+    }
+    
+
+
+    $scope.goToWorkListWithUserPreference = function(){
+        var logedUserInfo = {
+            empName        : $scope.data.empName,
+            userName       : $scope.data.userName,
+            userNo         : $scope.data.userNo,
+            isDoctor       : $scope.data.isDoctor,
+            formLink       : $scope.data.formLink,
+            reportLink     : $scope.data.reportLink,
+            companyInfo    : $scope.companyInfo,
+            preferenceInfo : $scope.userPreferenceData
+        }
+        console.log("Log UserInfo:",logedUserInfo);
+        localStorage.setItem("accessToken", JSON.stringify($scope.data.userNo));
+        localStorage.setItem("loginInfo",JSON.stringify(logedUserInfo));
+        $location.path('/worklist');
+
+    }
+ 
+
+    // $scope.AccessUser = function() {
+    //     $scope.allCompanyInfo = [];
+    //     $http({
+    //         method: "POST",
+    //         url: serverUrl + "/api/auth/login",
+    //         data: JSON.stringify($scope.user),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).success(function(data) {	
+     
+    //     	if(!data.success){
+    //     		 $scope.loginMessage = data.message; 
+    //              $('#loginMessage').show().delay(2000).fadeOut(); 
+    //     	}
+        	
+    //         if(data.success){
+    //             $scope.data = data.model;
+    //            console.log("loged success Info:", data.model);
+    //            $scope.getUserPreference(data.model.userNo);
+
+
+    //             setTimeout(function() {
+    //                 var logedUserInfo = {
+    //                     empName        : $scope.data.empName,
+    //                     userName       : $scope.data.userName,
+    //                     userNo         : $scope.data.userNo,
+    //                     isDoctor       : $scope.data.isDoctor,
+    //                     formLink       : $scope.data.formLink,
+    //                     reportLink     : $scope.data.reportLink,
+    //                     companyInfo    : $scope.companyInfo,
+    //                     preferenceInfo : $scope.userPreferenceData
+    //                 }
+    //                 console.log("Log UserInfo:",logedUserInfo);
+    //                 localStorage.setItem("accessToken", JSON.stringify($scope.data.userNo));
+    //                 localStorage.setItem("loginInfo",JSON.stringify(logedUserInfo));
+    //                 $location.path('/worklist');
+
+    //             }, 1000);
+
+       
+
+
+    //         } else {
+    //             localStorage.removeItem("loginInfo");                                           
+    //         }
+    //     })
+
+    // };
 
 
 
